@@ -31,11 +31,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # 로컬
     'accounts',
     'products',
     'reviews',
+    # 설치
     'django_extensions',
     'imagekit',
+    'django_cleanup.apps.CleanupConfig',
+    # 기본
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
