@@ -5,7 +5,7 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, User
 
 class CustomAuthentication(AuthenticationForm):
     username = forms.CharField(
-        label = '아이디',
+        label = 'ID',
         widget = forms.TextInput(attrs={'class':'form-control',}),
     )
     password = forms.CharField(
@@ -20,15 +20,15 @@ class CustomAuthentication(AuthenticationForm):
 class CustomUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = get_user_model()
-        fields = ('username', 'email', 'name', 'password1', 'password2',)
+        fields = ('username', 'email', 'first_name', 'password1', 'password2',)
         widgets = {
             'username': forms.TextInput(attrs={'class':'form-control custom-input-form',}),
             'email': forms.TextInput(attrs={'class':'form-control custom-input-form',}),
-            'name': forms.TextInput(attrs={'class':'form-control custom-input-form',}),
+            'first_name': forms.TextInput(attrs={'class':'form-control custom-input-form',}),
         }
 
 
 class CustomUserChangeForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):
         model = get_user_model()
-        fields = ('username', 'email', 'name')
+        fields = ('username', 'email', 'first_name')
