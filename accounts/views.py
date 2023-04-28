@@ -10,13 +10,13 @@ from django.http import JsonResponse
 
 def login(request):
     if request.user.is_authenticated:
-        return redirect('products:index')
+        return redirect('pjt:index')
     
     if request.method == 'POST':
         form = CustomAuthentication(request, request.POST)
         if form.is_valid():
             auth_login(request, form.get_user())
-            return redirect('products:index')
+            return redirect('pjt:index')
     else:
         form = CustomAuthentication()
 
