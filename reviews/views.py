@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
-from .models import Review
-from .forms import ReivewForm
-# from products.models import Product
+from .models import Review, Comment
+from .forms import ReivewForm, CommentForm
+from products.models import Product
 
 
 # Create your views here.
 def create_review(request, category_pk, product_pk):
-    prodcut = Product.objects.get(pk = product_pk)
+    product = Product.objects.get(pk = product_pk)
     form = ReivewForm(request.POST)
     if request.method == 'POST':
         if form.is_valid():
@@ -45,3 +45,44 @@ def update_review(request, category_pk, product_pk, review_pk):
             if form.is_valid():
                 form.save()
                 return redirect('reviews:detail', category_pk=category_pk, product_pk=product_pk, review_pk=review.pk)
+            
+
+def comment_create(request, category_pk, product_pk, review_pk):
+    review = Review.objects.get(pk=review_pk)
+    comment_form = CommentForm(request.POST)
+    if comment_form.is_valid():
+        comment = comment_form.save(commit=False)
+        comment.review = review
+        comment.user = request.user
+        comment_form.save()
+        return redirect('reviews:detail', category_pk=category_pk, product_pk=product_pk, review_pk=review.pk)
+    context = {
+        'review':review,
+        'comment_form':comment_form,
+    }
+    return render(request, 'reviews/detail.html', context)
+
+
+def comment_delete(request, category_pk, product_pk, review_pk, comment_pk):
+    comment = Comment.objects.get(pk=comment_pk)
+    if request.user == comment.user:
+        comment.delete()
+    return redirect('reviews:detail', category_pk=category_pk, product_pk=product_pk, review_pk=review_pk)
+
+
+def like_review(request, category_pk, product_pk, review_pk):
+    review = Review.objects.get(pk=review_pk)
+    if review.like_users.filter(pk=request.user.pk).exists():
+        review.like_users.remove(request.user)
+    else:
+        review.like_users.add(request.user)
+    return redirect('홈페이지 인덱스')#################
+
+
+def like_commnet(request, category_pk, product_pk, review_pk, comment_pk):
+    comment = Comment.objects.get(pk=comment_pk)
+    if comment.like_users.filter(pk=request.user.pk).exists():
+        comment.like_user.remove(request.user)
+    else:
+        comment.like_users.add(request.user)
+    return redirect('홈페이지 인덱스')###################
