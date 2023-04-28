@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>리뷰 생성</h1>
+  <form action="{% url 'reviews:create_review' category_pk=product.category.pk product_pk=product.pk %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit">
+  </form>
+{% endblock content %}
+
