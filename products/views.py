@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import Product
+from .models import Product, Category
 
 
 # 백엔드에서 결과 확인하기 위하여 임시로 import
@@ -22,21 +22,18 @@ def index(request):
 
 
 # 카테고리별 상품
-def category_products(request, category_pk):
+def category_products(request, category_name):
     # 특정 카테고리의 상품들
-    products = Product.objects.filter(category=category_pk)
+    category = Category.objects.get(name=category_name)
+    products = Product.objects.filter(category=category)
     
-    # 임시 확인하기 위해(백엔드에서) 직렬화
-    # products = serializers.serialize('json', products)
 
-    context = [{
-            '제품이름':product.name,
-        }for product in products]
+    context = {
+        'category':category_name,
+        'products':products,
+    }
     
-    
-    # 임시 json 리스폰스 - 나중에 html로 렌더링
-    return JsonResponse({'context':context}, status=200)
-    # return render(request, 'products/index.html', context)
+    return render(request, 'products/category.html', context)
 
 
 # 상품 디테일
