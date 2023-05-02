@@ -89,7 +89,7 @@
       </div>
 
       <div class="function">
-        <p>등록제품: <strong>186</strong></p>
+        <p>등록제품: <strong>{{products|length}}</strong></p>
         <div class="menu-wrapper">
           <ul class="desktop-menu">
             <li class="li-margin"><a href="#">신상품</a></li>
@@ -113,7 +113,7 @@
           {% for product in products %}
             <li class="row">
               <div class="prd-item ">
-                <a href="#">
+                <a href="{% url 'products:product_detail' product.pk %}">
                   <img src="{{ product.image.url }}" alt="karimoku60"
                     class="product-imgsize">
                   <br>

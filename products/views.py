@@ -41,14 +41,9 @@ def product_detail(request, product_pk):
     # 특정상품 조회
     product = Product.objects.get(pk=product_pk)
 
-    # 임시
-    product_dict = model_to_dict(product)
-    product_dict['image'] = product.image.url
 
     context = {
-        'product':product_dict,
+        'product':product,
     }
     
-    # 임시 json 리스폰스 - 나중에 html로 렌더링
-    return JsonResponse(context, status=200)
-    # return render(request, 'products/index.html', context)
+    return render(request, 'products/detail.html', context)

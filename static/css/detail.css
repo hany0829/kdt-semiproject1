@@ -1,0 +1,89 @@
+@import url("https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css");
+@import url("https://fonts.googleapis.com/css2?family=Mynerve&family=Noto+Sans+KR:wght@900&display=swap");
+
+body {
+  font-family: "nanumsquare";
+  /* font-family: "Mynerve", cursive; */
+}
+
+.detail_img {
+  width: 500px;
+  height: 500px;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.infoarea {
+  margin-left: 100px;
+  margin-top: 100px;
+}
+.img_line {
+  border-bottom: 1px solid black;
+}
+
+.tr-style {
+  font-weight: normal;
+  width: 115px;
+  padding: 5px;
+}
+
+.border-one {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.img-margin {
+  margin-bottom: 25px;
+}
+
+.gray-font {
+  color: gray;
+  font-size: 14px;
+  border-bottom: 1px solid gray;
+  padding-bottom: 10px;
+}
+
+.total-em {
+  font-weight: 700;
+}
+
+.button {
+  margin-top: 30px;
+  font-size: 12px;
+  border-radius: 0%;
+}
+
+.btn-margin {
+  margin-right: 10px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.review-area {
+  margin-top: 50px;
+}
+
+.review-title {
+  text-align: center;
+}
+
+.review-font {
+  color: gray;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.comment {
+  background-color: rgb(242, 242, 242);
+  padding: 20px;
+}
+
+textarea {
+  margin-top: 10px;
+}
