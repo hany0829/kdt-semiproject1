@@ -1,18 +1,403 @@
-<!DOCTYPE html>
+<!doctype html>
+{% load static %}
 <html lang="en">
-<head>
-  {% block style %}  
-  
-  {% endblock style  %}
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  {% block content %}
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-  {% endblock content %}
-</body>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    {% block style %}{% endblock style %}
+    <style>
+      @import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+      @import url('https://fonts.googleapis.com/css2?family=Mynerve&family=Noto+Sans+KR:wght@900&display=swap');
+
+      .header-logo img {
+        width: 150px;
+        height: 30px;
+      }
+
+      .header-wrap {
+        margin-left: 15px;
+        margin-right: 15px;
+      }
+
+      li {
+        list-style: none;
+        float: left;
+        margin-right: 20px;
+      }
+
+      .header-gnb img {
+        width: 30px;
+        height: 30px;
+      }
+
+      .hamburger {
+        display: inline-block;
+        cursor: pointer;
+      }
+
+      .hamburger span {
+        display: block;
+        width: 33px;
+        height: 4px;
+        margin-bottom: 5px;
+        background-color: #333;
+      }
+
+      .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        transition: 0.3s;
+        padding-top: 60px;
+      }
+
+      .sidenav a {
+        padding: 8px 8px 8px 16px;
+        text-decoration: none;
+        font-size: 18px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+      }
+
+      .sidenav a:hover {
+        color: #f1f1f1;
+      }
+
+      .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+      }
+
+      .header-nav a {
+        color: black;
+        text-decoration: none;
+        margin-right: 20px;
+      }
+
+      .header-nav a:hover {
+        color: gray;
+      }
+
+      .dropdown-menu {
+        background-color: rgba(54, 57, 63, 0.5);
+        width: calc(30px * 3);
+      }
+
+      .dropdown-menu a {
+        color: white;
+      }
+
+      .dropdown-menu a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .nav-item:hover .dropdown-menu {
+        display: block;
+        left: 50%;
+        /* 가운데 정렬 */
+        transform: translateX(-50%);
+        /* 위치 조정 */
+        text-align: center;
+        /* 텍스트 가운데 정렬 */
+      }
+
+      /* 검색창 스타일 */
+      .search-input {
+        border: none;
+        border-bottom: 1px solid black;
+        outline: none;
+        background-color: transparent;
+        margin-right: 10px;
+        padding: 2px 0;
+      }
+
+      /* 메뉴 드랍다운 */
+      .header-nav {
+        display: flex;
+      }
+
+      .nav-link {
+        position: relative;
+        margin-right: 1rem;
+        text-decoration: none;
+        color: #333;
+      }
+
+      .nav-dropdown {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #fff;
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        padding: 12px 16px;
+        z-index: 1;
+      }
+
+      .nav-dropdown-item {
+        display: block;
+        margin-bottom: 5px;
+        text-decoration: none;
+        color: #333;
+      }
+
+      .nav-dropdown-item:hover {
+        color: #007bff;
+      }
+
+      .footer_nav {
+        display: flex;
+        justify-content: center;
+      }
+
+      .inner {
+        display: flex;
+      }
+
+      .footer-cont {
+        padding: 20px;
+      }
+
+      .about,
+      .member,
+      .mypage {
+        display: inline-block;
+      }
+
+      .about ul,
+      .member ul,
+      .mypage ul {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .about li,
+      .member li,
+      .mypage li {
+        margin-bottom: 10px;
+        margin-right: 0;
+      }
+
+      .mypage li > a {
+        text-decoration: none;
+      }
+
+      a {
+        color: black;
+      }
+
+      .footer_nav {
+        background-color: rgb(244, 241, 236);
+      }
+
+      .textstyle {
+        font-family: 'Mynerve', cursive;
+        font-family: 'Noto Sans KR', sans-serif;
+        font-size: 20px;
+        text-align: center;
+        color: #504d49;
+      }
+
+      .footer-cont {
+        margin-right: 40px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a href="#">Brand</a>
+      <a href="#">Sofa</a>
+      <a href="#">Chair</a>
+      <a href="#">Tables</a>
+      <a href="#">Beds</a>
+      <a href="#">Acc.</a>
+      <a href="#">Sale</a>
+      <a href="#">Review</a>
+    </div>
+    <div id="header">
+      <div class="header-wrap d-flex flex-column mt-5">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class='header-logo'>
+            <!-- 로고 -->
+            <span class="first-logo">
+              <a href="#">
+                <img src="http://www.remod.co.kr/onimg/logo@3x.png" alt="logo(big)">
+              </a>
+            </span>
+          </div>
+
+          <!-- 정보 -->
+          <div class="header-gnb d-flex">
+            <li id="" search="search">
+              <input type="text" class="search-input d-none d-lg-inline" placeholder="">
+              <span class="li_img">
+                <img src="https://www.remod.co.kr/onimg/ico_search@3x.png" alt="search">
+              </span>
+            </li>
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link" id="profileDropdown" role="button">
+                <img src="https://www.remod.co.kr/onimg/ico_user@3x.png" alt="myshop">
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                <li>
+                  <a class="dropdown-item" href="#">LOGIN</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">JOIN</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">MYPAGE</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">REVIEW</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">
+                <img src="https://www.remod.co.kr/onimg/ico_cart@3x.png" alt="basket"></a>
+            </li>
+            <!-- 햄버거 버튼 -->
+            <div class="hamburger d-lg-none" onclick="openNav()">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 네비게이션 바 -->
+        <div class="header-nav d-none d-lg-flex mt-4">
+          <a href="#" class="nav-link">Brand</a>
+          <div class="nav-link">
+            <a href="#">Sofa</a>
+            <div class="nav-dropdown">
+              <a href="#" class="nav-dropdown-item">Product1</a>
+              <a href="#" class="nav-dropdown-item">Product2</a>
+              <a href="#" class="nav-dropdown-item">Product3</a>
+            </div>
+          </div>
+          <div class="nav-link">
+            <a href="#">Chair</a>
+            <div class="nav-dropdown">
+              <a href="#" class="nav-dropdown-item">Product1</a>
+              <a href="#" class="nav-dropdown-item">Product2</a>
+              <a href="#" class="nav-dropdown-item">Product3</a>
+            </div>
+          </div>
+          <a href="#" class="nav-link">Tables</a>
+          <div class="dropdown-menu"></div>
+          <a href="#" class="nav-link">Beds</a>
+          <a href="#" class="nav-link">Acc.</a>
+          <a href="#" class="nav-link">Sale</a>
+          <a href="#" class="nav-link">Review</a>
+        </div>
+      </div>
+    </div>
+
+    {% block content %}{% endblock content %}
+    <!-- 푸터 -->
+    <div class="footer_nav">
+      <div class="inner">
+        <div class="footer-cont about">
+          <h3 class="textstyle">ABOUT US</h3>
+          <ul class="p-0">
+            <li>KDT</li>
+            <li>세미프로젝트</li>
+            <li>1조 포한신 👾
+            </li>
+          </ul>
+        </div>
+        <div class="footer-cont member">
+          <h3 class="textstyle">MEMBER</h3>
+          <ul class="p-0">
+            <li>
+              <a href="https://github.com/hany0829">
+                Hanyoung Bang</a>
+            </li>
+            <li>
+              <a href="https://github.com/arrmadillo">Suhan Lee</a>
+            </li>
+            <li>
+              <a href="https://github.com/Sysynn">Sangyoon Shin</a>
+            </li>
+            <li>
+              <a href="https://github.com/badajinsee">Sunjin Han</a>
+            </li>
+            <li>
+              <a href="https://github.com/dnjsxo0616">Wontae Han</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-cont mypage">
+          <h3 class="textstyle">MY PAGE</h3>
+          <ul class="p-0">
+            <li>
+              <a href="#">Login</a>
+            </li>
+            <li>
+              <a href="#">Join</a>
+            </li>
+            <li>
+              <a href="#">Mypage</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function openNav() {
+        document
+          .getElementById("mySidenav")
+          .style
+          .width = "250px";
+      }
+
+      function closeNav() {
+        document
+          .getElementById("mySidenav")
+          .style
+          .width = "0";
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        var navLinks = document.querySelectorAll('.nav-link');
+
+        navLinks.forEach(function (navLink) {
+          navLink.addEventListener('mouseenter', function () {
+            var dropdown = this.querySelector('.nav-dropdown');
+            if (dropdown) {
+              dropdown.style.display = 'block';
+            }
+          });
+
+          navLink.addEventListener('mouseleave', function () {
+            var dropdown = this.querySelector('.nav-dropdown');
+            if (dropdown) {
+              dropdown.style.display = 'none';
+            }
+          });
+        });
+      });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+  </body>
+
 </html>
