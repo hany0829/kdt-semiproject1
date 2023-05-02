@@ -1,12 +1,13 @@
 from django.db import models
+import os
 
 class Category(models.Model):
     name = models.CharField(max_length=50)
 
 class Product(models.Model):
     def product_image_path(instance, filename):
-        png = filename.split('.')[-1]
-        return f'images/{instance.category.name.lower()}/{instance.name}.{png}'
+        _, ext = os.path.splitext(filename)
+        return f'images/{instance.category.name.lower()}/{instance.name}{ext}'
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     name     = models.CharField(max_length=50)
     price    = models.PositiveIntegerField()
