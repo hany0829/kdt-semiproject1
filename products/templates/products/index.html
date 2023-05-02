@@ -1,4 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
 hello
+<h2> {{ user }} 님 </h2>
+  <form action="{% url 'accounts:logout' %}" method="POST">
+    {% csrf_token %}
+  <input type="submit" value="Logout">
+  </form>
+  <form action="{% url 'accounts:delete' %}" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="회원탈퇴">
+  </form>
 {% endblock content %}

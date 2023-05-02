@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Product
 
 
@@ -7,6 +7,9 @@ from django.http import JsonResponse
 from django.core import serializers
 from django.forms.models import model_to_dict
 
+
+def init(request):
+    return redirect('products:index')
 
 # 임시 인덱스(나중에는 좋아요 많은순 or 리뷰 많은 순으로 상품 대체할듯?)
 def index(request):

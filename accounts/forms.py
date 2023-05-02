@@ -9,12 +9,12 @@ class CustomAuthentication(AuthenticationForm):
         widget = forms.TextInput(attrs={'class':'form-control',}),
     )
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'class':'form-control',}),
+        widget = forms.PasswordInput(attrs={'class':'form-control',}),
     )
 
     class Meta:
         model = get_user_model
-        fields = '__all__'
+        fields = ('username','password')
 
 
 class CustomUserCreationForm(UserCreationForm):
