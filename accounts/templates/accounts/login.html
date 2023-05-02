@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/login_css.css' %}">
+    <script src="{% static 'js/login_js.js' %}"></script>
+    <title>로그인</title>
+</head>
+<body>
+    <div class="login-container">
+        <h2>로그인</h2>
+        <form action="{% url 'accounts:login' %}" id="login-form" method="POST">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="{{ form.username.auto_id }}"></label>
+            {% comment %} <input type="text" id="username" name="username" placeholder="아이디"required> {% endcomment %}
+            {{ form.username }}
+          </div>
+          <div class="form-group">
+            <label for="{{ form.password.auto_id }}"></label>
+            {% comment %} <input type="password" id="password" name="password" placeholder="비밀번호" required> {% endcomment %}
+            {{ form.password }}
+          </div>
+          <button type="submit" class="login-btn">로그인</button>
+        </form>
+        <hr>
+        <div class="footer-links">
+          <div>
+            <div>아이디 찾기</div>
+            <div>회원 가입</div>
+          </div>
+          <div style="color: #e9e9e9">|</div>
+          <div>
+            <div>비밀번호 찾기</div>
+          </div>
+        </div>
+</body>
+</html>

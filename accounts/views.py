@@ -3,20 +3,20 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
-from .froms import CustomAuthentication, CustomUserCreationForm, CustomUserChangeForm
+from .forms import CustomAuthentication, CustomUserCreationForm, CustomUserChangeForm
 from django.contrib.auth import get_user_model
 from django.http import JsonResponse
 
 
 def login(request):
     if request.user.is_authenticated:
-        return redirect('pjt:index')
+        return redirect('products:index')
     
     if request.method == 'POST':
         form = CustomAuthentication(request, request.POST)
         if form.is_valid():
             auth_login(request, form.get_user())
-            return redirect('pjt:index')
+            return redirect('products:index')
     else:
         form = CustomAuthentication()
 
@@ -28,6 +28,7 @@ def login(request):
 
 @login_required
 def logout(request):
+    # print('test')
     auth_logout(request)
     return redirect('products:index')
 
