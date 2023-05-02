@@ -6,7 +6,9 @@ from django.contrib.auth.decorators import login_required
 from .forms import CustomAuthentication, CustomUserCreationForm, CustomUserChangeForm
 from django.contrib.auth import get_user_model
 from django.http import JsonResponse
-
+from django.contrib import messages
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
 
 def login(request):
     if request.user.is_authenticated:
@@ -63,17 +65,36 @@ def delete(request):
 @login_required
 def update(request):
     if request.method == 'POST':
-        form = CustomUserChangeForm(request.POST, isinstance=request.user)
+        form = CustomUserChangeForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
             return redirect('products:index')
     else:
-        form = CustomUserChangeForm(isinstance=request.user)
+        form = CustomUserChangeForm(instance=request.user)
 
     context = {
         'form': form
     }
     return render(request, 'accounts/update.html', context)
+
+
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, '비밀번호가 변경 되었습니다!')
+            return redirect('products:index')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordChangeForm(request.user)
+    context = {
+        'form': form,
+    }
+    return render(request, 'accounts/change_password.html', context)
 
 
 def profile(request, username):
