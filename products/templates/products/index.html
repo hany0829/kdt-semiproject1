@@ -1,13 +1,517 @@
 {% extends 'base.html' %}
-{% block content %}
+{% load static %}
 
-<h2> {{ user.first_name }}님 안녕요?</h2>
-  <form action="{% url 'accounts:logout' %}" method="POST">
-    {% csrf_token %}
-  <input type="submit" value="Logout">
-  </form>
-  <form action="{% url 'accounts:delete' %}" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="회원탈퇴">
-  </form>
+
+{% block content %}
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous"/>
+  <!-- 제이쿼리 불러오기 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- owl 캐러셀 불러오기 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
+  <!-- 스크립트 파일 불러오기 -->
+  <script src="{% static 'js/script.js' %}"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.theme.default.min.css">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+  <!-- 폰트어썸 불러오기 -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+  {% comment %}  {% endcomment %}
+  <div class="container">
+    <div class="carousel-1" data-carousel-1-autoplay-status="Y">
+      <div class="owl-carousel owl-theme">
+        <div class="item">
+          <img src="{% static 'img/carousel_img/p1.png' %}">
+        </div>
+        <div class="item">
+          <img src="{% static 'img/carousel_img/p2.png' %}">
+        </div>
+        <div class="item">
+          <img src="{% static 'img/carousel_img/p3.png' %}">
+        </div>
+        <div class="item">
+          <img src="{% static 'img/carousel_img/p4.png' %}">
+        </div>
+        <div class="item">
+          <img src="{% static 'img/carousel_img/p5.png' %}">
+        </div>
+        <div class="item">
+          <img src="{% static 'img/carousel_img/p6.png' %}">
+        </div>
+      </div>
+      <div class="play">시작</div>
+      <div class="stop">정지</div>
+    </div>
+    <div class="main-inner">
+      <div class="banner-area row">
+        <ul>
+          <li>
+            <div class="cont-box1">
+              <img src=" https://www.remod.co.kr/web/test/main_banner05.png" alt="casestudy" class="bannerimg-size"/>
+              <div class="banner-info">
+                <p class="banner-font pt-4 h5">Karimoku CASE STUDY</p>
+                <p>
+                  현대적인 라이프스타일 브랜드로
+                  <br/>
+                  고요한 아름다움에 대한 감탄과 사랑에서 탄생했습니다
+                </p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="cont-box2">
+              <img src="http://remod.co.kr/web/test/main_banner08.png" alt="760" class="bannerimg-size"/>
+              <div class="banner-info">
+                <p class="banner-font pt-4 h5">Karimoku 60</p>
+                <p>
+                  순수하게 손으로 제조를 하던 시대
+                  <br/>
+                  그 시대의 우리다움을 계승하는 karimoku 60입니다
+                </p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="cont-box3">
+              <img src="http://remod.co.kr/web/test/main_banner07.png" alt="karimoku" class="bannerimg-size"/>
+              <div class="banner-info">
+                <p class="banner-font pt-4 h5">Karimoku New Standard</p>
+                <p>
+                  글로벌 디자인 그룹 BIG GAME이
+                  <br/>
+                  디자인한 심플한 가구 시리즈입니다.
+                </p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <!--BEST PRODUCT -->
+      <div class="bestproduct-area">
+        <div class="best">
+          <h4 class="bestproduct-font" style="height: 50%">
+            <strong>BEST PRODUCT</strong>
+          </h4>
+        </div>
+        <div class="product">
+          <ul class="prd-list">
+            <!-- 1번째 상품 -->
+            {% for product in products %}
+              <li class="row">
+                <div class="prd-item">
+                  <a href="#">
+                    <img src="{{ product.image.url }}" alt="karimoku60" class="product-imgsize"/>
+                    <br/>
+                    <strong class="brandname">Karimoku60</strong>
+                    <br/>
+                    {% comment %} <strong>가리모쿠 60 케체 2인용 타프블루+월넛</strong> {% endcomment %}
+                    <strong>{{ product.name }}</strong>
+                    <br/>
+                    <strong class="price">988,000원</strong>
+                    <br/>
+                    <img src="https://img.echosting.cafe24.com/design/skin/admin/ko_KR/ico_product_stock.gif" alt="재고보유"/>
+                  </a>
+                </div>
+              </li>
+            {% endfor %}
+              
+            
+
+            
+            {% comment %} <!-- 2번째 상품 -->
+            <li class="row">
+              <div class="prd-item">
+                <a href="#">
+                  <img src="karimoku_image/karimoku60/가리모쿠 60 케이체어 타프블루 1인용.png" alt="karimoku60" class="product-imgsize"/>
+                  <br/>
+                  <strong class="brandname">Karimoku60</strong>
+                  <br/>
+                  <strong>가리모쿠 60 케이체어 1인용 타프블루+월넛</strong>
+                  <br/>
+                  <strong class="price">639,000원</strong>
+                  <br/>
+                  <img src="https://img.echosting.cafe24.com/design/skin/admin/ko_KR/ico_product_stock.gif" alt="재고보유"/>
+                </a>
+              </div>
+            </li>
+            <!-- 3번째 상품 -->
+            <li class="row">
+              <div class="prd-item">
+                <a href="#">
+                  <img src="karimoku_image/karimoku60/가리모쿠 60 타프그린.png" alt="karimoku60" class="product-imgsize"/>
+                  <br/>
+                  <strong class="brandname">Karimoku60</strong>
+                  <br/>
+                  <strong>가리모쿠 60 케이체어 1인용 타프그린+월넛</strong>
+                  <br/>
+                  <strong class="price">639,000원</strong>
+                  <br/>
+                  <img src="https://img.echosting.cafe24.com/design/skin/admin/ko_KR/ico_product_stock.gif" alt="재고보유"/>
+                </a>
+              </div>
+            </li>
+            <!-- 4번째 상품 -->
+            <li class="row">
+              <div class="prd-item">
+                <a href="#">
+                  <img src="karimoku_image/karimoku60/가리모쿠 60 스탠다드블랙.png" alt="karimoku60" class="product-imgsize"/>
+                  <br/>
+                  <strong class="brandname">Karimoku60</strong>
+                  <br/>
+                  <strong class="fs-6">가리모쿠 60 케이체어 1인용 스탠다드블랙+월넛</strong>
+                  <br/>
+                  <strong class="price">557,000원</strong>
+                  <br/>
+                  <img src="https://img.echosting.cafe24.com/design/skin/admin/ko_KR/ico_product_stock.gif" alt="재고보유"/>
+                </a>
+              </div>
+            </li>
+            <!-- 5번째 상품 -->
+            <li class="row">
+              <div class="prd-item">
+                <a href="#">
+                  <img src="karimoku_image/karimoku/가리모쿠 wu46 3seater.jpeg" alt="karimoku" class="product-imgsize"/>
+                  <br/>
+                  <strong class="brandname">KARIMOKU</strong>
+                  <br/>
+                  <strong class="fs-6">가리모쿠 wu46 3seater</strong>
+                  <br/>
+                  <strong class="price">3,532,000원</strong>
+                  <br/>
+                  <img src="https://img.echosting.cafe24.com/design/skin/admin/ko_KR/ico_product_stock.gif" alt="재고보유"/>
+                </a>
+              </div>
+            </li>
+            <!-- 6번째 상품 -->
+            <li class="row">
+              <div class="prd-item">
+                <a href="#">
+                  <img src="karimoku_image/karimoku60/가리모쿠 60 데스크.jpeg" alt="karimoku60" class="product-imgsize"/>
+                  <br/>
+                  <strong class="brandname">Karimoku60</strong>
+                  <br/>
+                  <strong class="fs-6">가리모쿠60 데스크</strong>
+                  <br/>
+                  <strong class="price">802,000원</strong>
+                  <br/>
+                  <img src="https://img.echosting.cafe24.com/design/skin/admin/ko_KR/ico_product_stock.gif" alt="재고보유"/>
+                </a>
+              </div>
+            </li>
+            <!-- 7번째 상품 -->
+            <li class="row">
+              <div class="prd-item">
+                <a href="#">
+                  <img src="karimoku_image/karimoku/가리모쿠 z612 암리스 1인용.png" alt="karimoku" class="product-imgsize"/>
+                  <br/>
+                  <strong class="brandname">KARIMOKU</strong>
+                  <br/>
+                  <strong class="fs-6">가리모쿠 ZU16 암리스 1인용</strong>
+                  <br/>
+                  <strong class="price">1,516,000원</strong>
+                  <br/>
+                  <img src="https://img.echosting.cafe24.com/icon/product/ko_KR/icon_11_06.gif" alt="BEST"/>
+                </a>
+              </div>
+            </li>
+            <!-- 8번째 상품 -->
+            <li class="row">
+              <div class="prd-item">
+                <a href="#">
+                  <img src="karimoku_image/karimoku/가리모쿠 wu61 3seater.jpeg" alt="karimoku" class="product-imgsize"/>
+                  <br/>
+                  <strong class="brandname">KARIMOKU</strong>
+                  <br/>
+                  <strong class="fs-6">가리모쿠 WU61 3seater</strong>
+                  <br/>
+                  <strong class="price">4,251,000원</strong>
+                  <br/>
+                  <img src="https://img.echosting.cafe24.com/icon/product/ko_KR/icon_13_02.gif" alt="HOT"/>
+                </a>
+              </div>
+            </li>
+            <!-- 9번째 상품 -->
+            <li class="row">
+              <div class="prd-item">
+                <a href="#">
+                  <img src="karimoku_image/karimoku case study/kcs n-dt01 w2200.png" alt="karimoku casestudy" class="product-imgsize"/>
+                  <br/>
+                  <strong class="brandname">KARIMOKU CASE STUDY</strong>
+                  <br/>
+                  <strong class="fs-6">KCS N-DT01 W2200</strong>
+                  <br/>
+                  <strong class="price">7,926,000원</strong>
+                  <br/>
+                </a>
+              </div>
+            </li>
+            <!--10번째 상품 -->
+            <li class="row">
+              <div class="prd-item">
+                <a href="#">
+                  <img src="karimoku_image/karimoku/가리모쿠 uu22 sofa.jpeg" alt="karimoku" class="product-imgsize"/>
+                  <br/>
+                  <strong class="brandname">KARIMOKU</strong>
+                  <br/>
+                  <strong class="fs-6">가리모쿠 UU22 sofa</strong>
+                  <br/>
+                  <strong class="price">2,707,000원</strong>
+                  <br/>
+                </a>
+              </div>
+            </li>
+            <!-- 11번째 상품 -->
+            <li class="row">
+              <div class="prd-item">
+                <a href="#">
+                  <img src="karimoku_image/karimoku case study/kcs n-ct01 w1800.jpeg" alt="karimoku" class="product-imgsize"/>
+                  <br/>
+                  <strong class="brandname">KARIMOKU CASE STUDY</strong>
+                  <br/>
+                  <strong class="fs-6">KCS N-CT01 W1800</strong>
+                  <br/>
+                  <strong class="price">5,446,000원</strong>
+                  <br/>
+                </a>
+              </div>
+            </li>
+            <!-- 12번째 상품 -->
+            <li class="row">
+              <div class="prd-item">
+                <a href="#">
+                  <img src="karimoku_image/kunst/가리모쿠 Kunset 3 seater.jpeg" alt="Kunst" class="product-imgsize"/>
+                  <br/>
+                  <strong class="brandname">KUNST</strong>
+                  <br/>
+                  <strong class="fs-6">가리모쿠 Kunst 3 seater</strong>
+                  <br/>
+                  <strong class="price">10,198,000원</strong>
+                  <br/>
+                </a>
+              </div>
+            </li>
+            <!-- 13번째 상품 -->
+            <li class="row">
+              <div class="prd-item">
+                <a href="#">
+                  <img src="karimoku_image/karimoku/가리모쿠 du73 dining table.jpeg" alt="Karimoku" class="product-imgsize"/>
+                  <br/>
+                  <strong class="brandname">KARIMOKU</strong>
+                  <br/>
+                  <strong class="fs-6">가리모쿠 DU73 dining table</strong>
+                  <br/>
+                  <strong class="price">2,294,000원</strong>
+                  <br/>
+                </a>
+              </div>
+            </li>
+            <!-- 14번째 상품 -->
+            <li class="row">
+              <div class="prd-item">
+                <a href="#">
+                  <img src="karimoku_image/karimoku60/가리모쿠60 스탠다드블랙 2인용.jpeg" alt="Karimoku60" class="product-imgsize"/>
+                  <br/>
+                  <strong class="brandname">Karimoku60</strong>
+                  <br/>
+                  <strong class="fs-6">가리모쿠60 케이체어 2인용 스탠다드블랙+월넛</strong>
+                  <br/>
+                  <strong class="price">844,000원</strong>
+                  <br/>
+                  <img src="https://img.echosting.cafe24.com/design/skin/admin/ko_KR/ico_product_stock.gif" alt="재고보유"/>
+                </a>
+              </div>
+            </li>
+            <!-- 15번째 상품 -->
+            <li class="row">
+              <div class="prd-item">
+                <a href="#">
+                  <img src="karimoku_image/karimoku/가리모쿠 wd43 sofa 3seater.jpeg" alt="Karimoku" class="product-imgsize"/>
+                  <br/>
+                  <strong class="brandname">KARIMOKU</strong>
+                  <br/>
+                  <strong class="fs-6">가리모쿠 WD43 sofa 3seater</strong>
+                  <br/>
+                  <strong class="price">2,401,000원</strong>
+                  <br/>
+                </a>
+              </div>
+            </li>
+            <!-- 16번째 상품 -->
+            <li class="row">
+              <div class="prd-item">
+                <a href="#">
+                  <img src="karimoku_image/karimoku60/가리모쿠60 라이팅 체스트.jpeg" alt="Karimoku60" class="product-imgsize"/>
+                  <br/>
+                  <strong class="brandname">Karimoku60</strong>
+                  <br/>
+                  <strong class="fs-6">가리모쿠60 라이팅 체스트</strong>
+                  <br/>
+                  <strong class="price">1,711,000원</strong>
+                  <br/>
+                  <img src="https://img.echosting.cafe24.com/design/skin/admin/ko_KR/ico_product_stock.gif" alt="재고보유"/>
+                </a>
+              </div>
+            </li> {% endcomment %}
+          </ul>
+        </div>
+      </div>
+      <!-- 리뷰 -->
+      <div class="row d-inline">
+        <div class="title d-flex justify-content-between">
+          <h4 class="bestproduct-font line">
+            <strong>REVIEW</strong>
+          </h4>
+          <div class="viewmore">
+            <a href="#" style="color: white">VIEW MORE</a>
+          </div>
+        </div>
+        <div class="bord row">
+          <ul class="row reviewall justify-content-between">
+            <!-- 리뷰 1 -->
+            <li class="col-4 col-lg-2">
+              <div class="review-box">
+                <div class="review-img">
+                  <a href="#"><img class="insta-img" src="고양이.jpg" alt=""/></a>
+                </div>
+                <div class="review-inform review-font">
+                  <span>만족</span>
+                  <br/>
+                  <span style="color: gray">네이*|2023.04.23</span>
+                </div>
+              </div>
+            </li>
+            <!-- 리뷰 2 -->
+            <li class="col-4 col-lg-2">
+              <div class="review-box">
+                <div class="review-img">
+                  <a href="#"><img class="insta-img" src="존윅.jpg" alt=""/></a>
+                </div>
+                <div class="review-inform review-font">
+                  <span>만족</span>
+                  <br/>
+                  <span style="color: gray">네이*|2023.04.23</span>
+                </div>
+              </div>
+            </li>
+            <!-- 리뷰 3 -->
+            <li class="col-4 col-lg-2">
+              <div class="review-box">
+                <div class="review-img">
+                  <a href="#"><img class="insta-img" src="480.jpg" alt=""/></a>
+                </div>
+                <div class="review-inform review-font">
+                  <span>만족</span>
+                  <br/>
+                  <span style="color: gray">네이*|2023.04.23</span>
+                </div>
+              </div>
+            </li>
+            <!-- 리뷰 4 -->
+            <li class="col-4 col-lg-2">
+              <div class="review-box">
+                <div class="review-img">
+                  <a href="#"><img class="insta-img" src="143854_149286_5624.png" alt=""/></a>
+                </div>
+                <div class="review-inform review-font">
+                  <span>만족</span>
+                  <br/>
+                  <span style="color: gray">네이* | 2023.04.23</span>
+                </div>
+              </div>
+            </li>
+            <!-- 리뷰 5 -->
+            <li class="col-4 col-lg-2">
+              <div class="review-box">
+                <div class="review-img">
+                  <a href="#"><img class="insta-img" src="ㅁ.jpg" alt=""/></a>
+                </div>
+                <div class="review-inform review-font">
+                  <span>만족</span>
+                  <br/>
+                  <span style="color: gray">네이*|2023.04.23</span>
+                </div>
+              </div>
+            </li>
+            <!-- 리뷰 6 -->
+            <li class="col-4 col-lg-2">
+              <div class="review-box">
+                <div class="review-img">
+                  <a href="#"><img class="insta-img" src="AA.28193365.3.jpg" alt=""/></a>
+                </div>
+                <div class="review-inform review-font">
+                  <span>만족</span>
+                  <br/>
+                  <span style="color: gray">네이*|2023.04.23</span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 인스타그램 -->
+      <div>
+        <div class="title d-flex justify-content-between">
+          <h4 class="bestproduct-font line">
+            <strong>INSTAGRAM @Remod__</strong>
+          </h4>
+          <div class="viewmore">
+            <a href="https://www.instagram.com/remod_official_karimoku/" style="color: white">+ 팔로우
+            </a>
+          </div>
+        </div>
+        <div>
+          <ul class="insta-align justify-content-between row">
+            <!-- 1번 -->
+            <li class="col-2 p-0">
+              <a href="https://www.instagram.com/p/CrNPlGfJxOK/"><img class="insta-img img-fluid" src="https://scontent.cdninstagram.com/v/t51.29350-15/342044081_604273428402352_3846148785001364702_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=j1g_iW2vVZYAX8I9MLJ&_nc_ht=scontent.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AfA5M8wI_DMBviq2i9mD6x6GWHY3zQa5MLVmEwNLCewSlw&oe=6454015C" alt=""/></a>
+            </li>
+            <!-- 2번 -->
+            <li class="col-2 p-0">
+              <a href="https://www.instagram.com/p/Cptqfi7Jz6V/">
+                <img class="insta-img img-fluid" src="https://scontent.cdninstagram.com/v/t51.29350-15/334362176_981453892820505_7532954700072780858_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=Q8ODutdDqUwAX-gcgJg&_nc_ht=scontent.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AfDAjCerKq_i6gmGzmIIpycGeZsRfOUsB5TwYrM27gxAXA&oe=645451AA" alt=""/></a>
+            </li>
+            <!-- 3번 -->
+            <li class="col-2 p-0">
+              <a href="https://www.instagram.com/p/Co8rTz8JPd3/">
+                <img class="insta-img img-fluid" src="https://scontent.cdninstagram.com/v/t51.29350-15/332049464_552910356815226_4740239732713687468_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=x7FsqOkuJe4AX_HDmAW&_nc_ht=scontent.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AfDA7tyfeaLxNFoLRowMOCELVZwS8TLCor3nH7E3AM6XaQ&oe=64555F48" alt=""/></a>
+            </li>
+            <!-- 4번 -->
+            <li class="col-2 p-0">
+              <a href="https://www.instagram.com/p/CotiBqDJkFJ/"><img class="insta-img img-fluid" src="https://scontent.cdninstagram.com/v/t51.29350-15/331116543_6227744790590395_264204431958353330_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=zHXu45ZnMBAAX-Ja7sm&_nc_ht=scontent.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AfC6FzOS-efYRZDoG1RmAMPtHeoJxIiFyMXMdDY4XWfHzw&oe=6454CE8F" alt=""/></a>
+            </li>
+            <!-- 5번 -->
+            <li class="col-2 p-0">
+              <a href="https://www.instagram.com/p/Cn02K_SJNT5/">
+                <img class="insta-img img-fluid" src="https://scontent.cdninstagram.com/v/t51.29350-15/326874301_733140318409036_76752805852434511_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=PTa6bD5KzXkAX_SAtOt&_nc_ht=scontent.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AfC2oOP3hK6QbGD3u7-olHkS_OtYhnCpeRvGX8pJ2MgPwA&oe=6453E5F1" alt=""/></a>
+            </li>
+            <!-- 6번 -->
+            <li class="col-2 p-0">
+              <a href="https://www.instagram.com/p/CneBQHippHu/"><img class="insta-img img-fluid" src="https://scontent.cdninstagram.com/v/t51.29350-15/325643696_853193342463685_424341301192815726_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=NjLxRk8hpFAAX_T8N-Q&_nc_ht=scontent.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AfCzF3_LiAGHqpNi77G1u5p3RRgkPIOi3YU9VT6FNRzhdQ&oe=6454455C" alt=""/></a>
+            </li>
+            <!-- 7번 -->
+            <li class="col-2 p-0">
+              <a href="https://www.instagram.com/p/CnVrElxJ7p0/"><img class="insta-img img-fluid" src="https://scontent.cdninstagram.com/v/t51.29350-15/324843856_572258514915373_2094314821813207586_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=6YWZ0mQuJeIAX-cOn1L&_nc_ht=scontent.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AfBOMUQus-LsRwejjCCCzidRezrSRX4TaArAl49HaGOsww&oe=64553F8A" alt=""/></a>
+            </li>
+            <!-- 8번 -->
+            <li class="col-2 p-0">
+              <a href="https://www.instagram.com/p/CnRGDa4Jgsp/"><img class="insta-img img-fluid" src="https://scontent.cdninstagram.com/v/t51.29350-15/324939150_164447649654918_5009359706998112433_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=XNpRUD70eNEAX9YIGTD&_nc_ht=scontent.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AfDUcQz7k0gdeoLVCBYb39B8HORGDtZIzx2B74Ft6OXR3A&oe=6454EF70" alt=""/></a>
+            </li>
+            <!-- 9번 -->
+            <li class="col-2 p-0">
+              <a href="https://www.instagram.com/p/CnL4SD1p5xW/"><img class="insta-img img-fluid" src="https://scontent.cdninstagram.com/v/t51.29350-15/324074962_135765372672670_6946192567117193598_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=KulyigNrDRsAX9CXvVh&_nc_ht=scontent.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AfD2i8e--bYfkdmC5mqvbCSNSzmaBzdJYyuosF71irTDWA&oe=64553CF5" alt=""/></a>
+            </li>
+            <!-- 10번 -->
+            <li class="col-2 p-0">
+              <a href="https://www.instagram.com/p/Cm_CN2Lp5qN/">
+                <img class="insta-img img-fluid" src="https://scontent.cdninstagram.com/v/t51.29350-15/323703903_917519376326144_1542367185579248132_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=rtf1WkfQLIwAX8GwX95&_nc_ht=scontent.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AfDv10sc_8KSveXaNsisOJrxmDTSfj00pfphWqJE_hCHjg&oe=6453FC8A" alt=""/></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
 {% endblock content %}

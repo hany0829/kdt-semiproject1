@@ -30,8 +30,8 @@ def login(request):
 
 @login_required
 def logout(request):
-    # print('test')
-    auth_logout(request)
+    if request.user.is_authenticated:
+        auth_logout(request)
     return redirect('products:index')
 
 

@@ -13,7 +13,7 @@ def init(request):
 # 임시 인덱스(나중에는 좋아요 많은순 or 리뷰 많은 순으로 상품 대체할듯?)
 def index(request):
     # 모든 제품
-    products = Product.objects.all()
+    products = Product.objects.order_by('-pk')[0:16]
     context = {
         'products':products,
     }
