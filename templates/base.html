@@ -235,7 +235,7 @@
           <div class='header-logo'>
             <!-- 로고 -->
             <span class="first-logo">
-              <a href="#">
+              <a href="{% url 'products:index' %}">
                 <img src="http://www.remod.co.kr/onimg/logo@3x.png" alt="logo(big)">
               </a>
             </span>
@@ -283,29 +283,29 @@
 
         <!-- 네비게이션 바 -->
         <div class="header-nav d-none d-lg-flex mt-4">
-          <a href="#" class="nav-link">Brand</a>
+          <a href="" class="nav-link">Brand</a>
           <div class="nav-link">
-            <a href="#">Sofa</a>
+            <a href="{% url 'products:category_products' 'Sofa' %}">Sofa</a>
             <div class="nav-dropdown">
-              <a href="#" class="nav-dropdown-item">Product1</a>
-              <a href="#" class="nav-dropdown-item">Product2</a>
-              <a href="#" class="nav-dropdown-item">Product3</a>
+              <a href="" class="nav-dropdown-item">Product1</a>
+              <a href="" class="nav-dropdown-item">Product2</a>
+              <a href="" class="nav-dropdown-item">Product3</a>
             </div>
           </div>
           <div class="nav-link">
-            <a href="#">Chair</a>
+            <a href="{% url 'products:category_products' 'Chair' %}">Chair</a>
             <div class="nav-dropdown">
-              <a href="#" class="nav-dropdown-item">Product1</a>
-              <a href="#" class="nav-dropdown-item">Product2</a>
-              <a href="#" class="nav-dropdown-item">Product3</a>
+              <a href="" class="nav-dropdown-item">Product1</a>
+              <a href="" class="nav-dropdown-item">Product2</a>
+              <a href="" class="nav-dropdown-item">Product3</a>
             </div>
           </div>
-          <a href="#" class="nav-link">Tables</a>
+          <a href="{% url 'products:category_products' 'Tables' %}" class="nav-link">Tables</a>
           <div class="dropdown-menu"></div>
-          <a href="#" class="nav-link">Beds</a>
-          <a href="#" class="nav-link">Acc.</a>
-          <a href="#" class="nav-link">Sale</a>
-          <a href="#" class="nav-link">Review</a>
+          <a href="" class="nav-link">Beds</a>
+          <a href="" class="nav-link">Acc.</a>
+          <a href="" class="nav-link">Sale</a>
+          <a href="" class="nav-link">Review</a>
         </div>
       </div>
     </div>

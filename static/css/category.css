@@ -1,0 +1,197 @@
+@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+@import url('https://fonts.googleapis.com/css2?family=Mynerve&family=Noto+Sans+KR:wght@900&display=swap');
+
+body {
+  font-family: 'nanumsquare';
+}
+
+.banner_img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bannerimg-size {
+  width: auto;
+  height: 414px;
+}
+
+.banner-font {
+  font-weight: normal;
+  text-align: center;
+}
+
+.banner-info {
+  text-align: center;
+}
+
+.banner-area {
+  padding-bottom: 70px;
+}
+
+.cont-box1 {
+  padding-right: 17px;
+}
+
+.cont-box2 {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.cont-box3 {
+  padding-left: 17px;
+}
+
+.bestproduct-font {
+  font-family: 'Mynerve', cursive;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+hr {
+  background-color: #000000;
+}
+
+.product-imgsize {
+  width: 300px;
+  height: 300px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.brandname {
+  padding-bottom: 6px;
+  margin: 0;
+  text-align: left;
+  font-size: 12px;
+}
+
+.price {
+  padding-top: 6px;
+  margin-bottom: 5px;
+  font-size: 17px;
+}
+
+.product {
+  display: grid;
+}
+
+.best {
+  border-bottom: 1px solid black;
+  padding-top: 30px;
+  text-align: center;
+  display: flex;
+}
+
+.prd-item {
+  padding: 20px;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0px;
+}
+
+li {
+  float: left;
+}
+
+.viewmore {
+  background-color: black;
+  border-radius: 20px;
+  font-size: 12px;
+  padding: 10px 13px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.title {
+  padding-top: 90px;
+  margin-bottom: 72px;
+  bottom: 10px;
+  border-bottom: 1px solid black;
+}
+
+.bord {
+  margin-bottom: 100px;
+}
+
+.review-box {
+  /* width: 180px;
+      height: 263px; */
+  margin-left: 12px;
+  margin-bottom: 12px;
+  border: 1px solid rgb(221, 221, 218);
+  overflow: hidden;
+}
+
+.review-img {
+  width: 176px;
+  height: 176px;
+  border-bottom: 1px solid rgb(221, 221, 218);
+}
+
+.review-inform {
+  padding: 19px 14px;
+  display: block;
+}
+
+.reviewall {
+  display: flex;
+  margin-left: 50px;
+}
+
+.review-font {
+  font-size: 13px;
+}
+
+.chair-img {
+  width: 100px;
+  height: 100px;
+  display: flex;
+}
+.chair-text {
+  text-align: center;
+  padding-top: 10px;
+  font-size: 13px;
+}
+
+.chair-li {
+  padding: 12px 20px;
+  display: inline-block;
+}
+
+.bests {
+  border-bottom: 1px solid black;
+  padding-top: 30px;
+  text-align: center;
+}
+
+.function {
+  display: flex;
+  border-bottom: 1px solid black;
+  justify-content: space-between;
+  padding-top: 10px;
+}
+.li-margin {
+  margin-right: 10px;
+}
+
+/* 미디어쿼리 */
+.mobile-menu {
+  display: none;
+}
+
+@media screen and (max-width: 767px) {
+  .desktop-menu {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: block;
+  }
+}
