@@ -79,7 +79,7 @@ def like_review(request, category_pk, product_pk, review_pk):
     return redirect('products:prodcut_detail',category_pk=category_pk, product_pk=product_pk)
 
 
-def like_commnet(request, category_pk, product_pk, review_pk, comment_pk):
+def like_comment(request, category_pk, product_pk, review_pk, comment_pk):
     comment = Comment.objects.get(pk=comment_pk)
     if comment.like_users.filter(pk=request.user.pk).exists():
         comment.like_user.remove(request.user)
