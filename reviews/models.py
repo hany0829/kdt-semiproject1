@@ -11,6 +11,8 @@ class Review(models.Model):
     title = models.CharField(max_length=20)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+    # 별점 구현
+    # rating = models.PositiveIntegerField(default=5, blank=True, null=True)
 
 class Comment(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

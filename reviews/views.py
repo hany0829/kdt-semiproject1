@@ -76,7 +76,7 @@ def like_review(request, category_pk, product_pk, review_pk):
         review.like_users.remove(request.user)
     else:
         review.like_users.add(request.user)
-    return redirect('홈페이지 인덱스')#################
+    return redirect('products:prodcut_detail',category_pk=category_pk, product_pk=product_pk)
 
 
 def like_commnet(request, category_pk, product_pk, review_pk, comment_pk):
@@ -85,4 +85,4 @@ def like_commnet(request, category_pk, product_pk, review_pk, comment_pk):
         comment.like_user.remove(request.user)
     else:
         comment.like_users.add(request.user)
-    return redirect('홈페이지 인덱스')###################
+    return redirect('products:prodcut_detail',category_pk=category_pk, product_pk=product_pk)
