@@ -38,6 +38,7 @@ def signup(request):
         return redirect('products:index')
     
     if request.method == 'POST':
+        print('test')
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
