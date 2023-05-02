@@ -1,0 +1,130 @@
+@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+@import url('https://fonts.googleapis.com/css2?family=Mynerve&family=Noto+Sans+KR:wght@900&display=swap');
+
+body {
+  font-family: 'nanumsquare';
+}
+.banner_img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bannerimg-size {
+  width: auto;
+  height: 414px;
+}
+.banner-font {
+  font-weight: normal;
+  text-align: center;
+}
+.banner-info {
+  text-align: center;
+}
+.banner-area {
+  padding-bottom: 70px;
+}
+.cont-box1 {
+  padding-right: 17px;
+}
+.cont-box2 {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+.cont-box3 {
+  padding-left: 17px;
+}
+.bestproduct-font {
+  font-family: 'Mynerve', cursive;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+.product-imgsize {
+  width: 300px;
+  height: 300px;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+.brandname {
+  padding-bottom: 6px;
+  margin: 0;
+  text-align: left;
+  font-size: 12px;
+}
+.price {
+  padding-top: 6px;
+  margin-bottom: 5px;
+  font-size: 17px;
+} /* .product { display: grid; } */
+.best {
+  border-bottom: 1px solid black;
+  padding-top: 30px;
+}
+.prd-item {
+  padding: 20px;
+}
+ul {
+  list-style: none;
+  padding-left: 0px;
+}
+li {
+  float: left;
+}
+.viewmore {
+  background-color: black;
+  border-radius: 20px;
+  font-size: 12px;
+  padding: 10px 13px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+.title {
+  padding-top: 90px;
+  margin-bottom: 72px;
+  bottom: 10px;
+  border-bottom: 1px solid black;
+}
+.bord {
+  margin-bottom: 100px;
+}
+.review-box {
+  /* width: 180px; height: 263px; */
+  margin-left: 12px;
+  margin-bottom: 12px;
+  border: 1px solid rgb(221, 221, 218);
+  overflow: hidden;
+}
+.review-img {
+  /* width: 200px; height: 200px; */
+  max-width: 100%; /* width: 176px; height: 176px; */
+  border-bottom: 1px solid rgb(221, 221, 218);
+}
+.review-inform {
+  padding: 19px 14px;
+  display: block;
+}
+.reviewall {
+  display: flex;
+}
+.review-font {
+  font-size: 13px;
+}
+.insta-img {
+  width: 300px;
+  height: 300px;
+  max-width: 100%;
+  overflow: hidden;
+}
+.insta-img:hover {
+  transform: scale(1.4);
+  transition: 0.2s;
+}
+.insta-align {
+  display: flex; /* margin-left: 50px; */
+}
+.insta-align li {
+  margin: 3px;
+  flex-grow: 1;
+}
