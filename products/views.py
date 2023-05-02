@@ -4,7 +4,6 @@ from .models import Product
 
 # 백엔드에서 결과 확인하기 위하여 임시로 import
 from django.http import JsonResponse
-from django.core import serializers
 from django.forms.models import model_to_dict
 
 
@@ -28,14 +27,16 @@ def category_products(request, category_pk):
     products = Product.objects.filter(category=category_pk)
     
     # 임시 확인하기 위해(백엔드에서) 직렬화
-    products = serializers.serialize('json', products)
+    # products = serializers.serialize('json', products)
 
-    context = {
-        'products': products
-    }
+    context = [{
+            '제품이름':product.name,
+        }for product in products]
+    
     
     # 임시 json 리스폰스 - 나중에 html로 렌더링
-    return JsonResponse(context, status=200)
+    return JsonResponse({'context':context}, status=200)
+    # return render(request, 'products/index.html', context)
 
 
 # 상품 디테일
@@ -53,3 +54,4 @@ def product_detail(request, product_pk):
     
     # 임시 json 리스폰스 - 나중에 html로 렌더링
     return JsonResponse(context, status=200)
+    # return render(request, 'products/index.html', context)
