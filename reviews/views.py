@@ -2,12 +2,12 @@ from django.shortcuts import render, redirect
 from .models import Review, Comment
 from .forms import ReivewForm, CommentForm
 from products.models import Product
-
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 def create_review(request, category_pk, product_pk):
     product = Product.objects.get(pk = product_pk)
-    form = ReivewForm(request.POST)
+    form = ReivewForm(request.POST, request.FILES)
     if request.method == 'POST':
         if form.is_valid():
             review = form.save(commit=False)
@@ -20,6 +20,18 @@ def create_review(request, category_pk, product_pk):
         'form':form,
     }
     return render(request, 'reviews/create_review.html', context)
+
+
+
+def rate_review(request, review_id):
+    review = get_object_or_404(Review, pk=review_id)
+    rating = int(request.POST.get('rating'))
+    if rating in range(1, 6):
+        review.rating = rating
+        review.save()
+    return redirect('review_detail', review_id)
+
+
 
 
 def review_detail(request, category_pk, product_pk, review_pk):
