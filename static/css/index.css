@@ -67,9 +67,11 @@ ul {
   list-style: none;
   padding-left: 0px;
 }
-li {
+
+.li-slice {
   float: left;
 }
+
 .viewmore {
   background-color: black;
   border-radius: 20px;

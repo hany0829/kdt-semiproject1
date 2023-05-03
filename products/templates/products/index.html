@@ -12,13 +12,15 @@
   <script src="{% static 'js/script.js' %}"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.carousel.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.theme.default.min.css">
+  <!-- CSS -->
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
   <link rel="stylesheet" href="{% static 'css/index.css' %}">
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
 
   <!-- 폰트어썸 불러오기 -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-  {% comment %}  {% endcomment %}
+
   <div class="container">
     <div class="carousel-1" data-carousel-1-autoplay-status="Y">
       <div class="owl-carousel owl-theme">
@@ -45,7 +47,7 @@
     <div class="main-inner">
       <div class="banner-area row">
         <ul>
-          <li>
+          <li class='li-slice'>
             <div class="cont-box1">
               <img src=" https://www.remod.co.kr/web/test/main_banner05.png" alt="casestudy" class="bannerimg-size"/>
               <div class="banner-info">
@@ -58,7 +60,7 @@
               </div>
             </div>
           </li>
-          <li>
+          <li class='li-slice'>
             <div class="cont-box2">
               <img src="http://remod.co.kr/web/test/main_banner08.png" alt="760" class="bannerimg-size"/>
               <div class="banner-info">
@@ -71,7 +73,7 @@
               </div>
             </div>
           </li>
-          <li>
+          <li class='li-slice'>
             <div class="cont-box3">
               <img src="http://remod.co.kr/web/test/main_banner07.png" alt="karimoku" class="bannerimg-size"/>
               <div class="banner-info">
@@ -115,243 +117,6 @@
               </li>
             {% endfor %}
               
-            
-
-            
-            {% comment %} <!-- 2번째 상품 -->
-            <li class="row">
-              <div class="prd-item">
-                <a href="#">
-                  <img src="karimoku_image/karimoku60/가리모쿠 60 케이체어 타프블루 1인용.png" alt="karimoku60" class="product-imgsize"/>
-                  <br/>
-                  <strong class="brandname">Karimoku60</strong>
-                  <br/>
-                  <strong>가리모쿠 60 케이체어 1인용 타프블루+월넛</strong>
-                  <br/>
-                  <strong class="price">639,000원</strong>
-                  <br/>
-                  <img src="https://img.echosting.cafe24.com/design/skin/admin/ko_KR/ico_product_stock.gif" alt="재고보유"/>
-                </a>
-              </div>
-            </li>
-            <!-- 3번째 상품 -->
-            <li class="row">
-              <div class="prd-item">
-                <a href="#">
-                  <img src="karimoku_image/karimoku60/가리모쿠 60 타프그린.png" alt="karimoku60" class="product-imgsize"/>
-                  <br/>
-                  <strong class="brandname">Karimoku60</strong>
-                  <br/>
-                  <strong>가리모쿠 60 케이체어 1인용 타프그린+월넛</strong>
-                  <br/>
-                  <strong class="price">639,000원</strong>
-                  <br/>
-                  <img src="https://img.echosting.cafe24.com/design/skin/admin/ko_KR/ico_product_stock.gif" alt="재고보유"/>
-                </a>
-              </div>
-            </li>
-            <!-- 4번째 상품 -->
-            <li class="row">
-              <div class="prd-item">
-                <a href="#">
-                  <img src="karimoku_image/karimoku60/가리모쿠 60 스탠다드블랙.png" alt="karimoku60" class="product-imgsize"/>
-                  <br/>
-                  <strong class="brandname">Karimoku60</strong>
-                  <br/>
-                  <strong class="fs-6">가리모쿠 60 케이체어 1인용 스탠다드블랙+월넛</strong>
-                  <br/>
-                  <strong class="price">557,000원</strong>
-                  <br/>
-                  <img src="https://img.echosting.cafe24.com/design/skin/admin/ko_KR/ico_product_stock.gif" alt="재고보유"/>
-                </a>
-              </div>
-            </li>
-            <!-- 5번째 상품 -->
-            <li class="row">
-              <div class="prd-item">
-                <a href="#">
-                  <img src="karimoku_image/karimoku/가리모쿠 wu46 3seater.jpeg" alt="karimoku" class="product-imgsize"/>
-                  <br/>
-                  <strong class="brandname">KARIMOKU</strong>
-                  <br/>
-                  <strong class="fs-6">가리모쿠 wu46 3seater</strong>
-                  <br/>
-                  <strong class="price">3,532,000원</strong>
-                  <br/>
-                  <img src="https://img.echosting.cafe24.com/design/skin/admin/ko_KR/ico_product_stock.gif" alt="재고보유"/>
-                </a>
-              </div>
-            </li>
-            <!-- 6번째 상품 -->
-            <li class="row">
-              <div class="prd-item">
-                <a href="#">
-                  <img src="karimoku_image/karimoku60/가리모쿠 60 데스크.jpeg" alt="karimoku60" class="product-imgsize"/>
-                  <br/>
-                  <strong class="brandname">Karimoku60</strong>
-                  <br/>
-                  <strong class="fs-6">가리모쿠60 데스크</strong>
-                  <br/>
-                  <strong class="price">802,000원</strong>
-                  <br/>
-                  <img src="https://img.echosting.cafe24.com/design/skin/admin/ko_KR/ico_product_stock.gif" alt="재고보유"/>
-                </a>
-              </div>
-            </li>
-            <!-- 7번째 상품 -->
-            <li class="row">
-              <div class="prd-item">
-                <a href="#">
-                  <img src="karimoku_image/karimoku/가리모쿠 z612 암리스 1인용.png" alt="karimoku" class="product-imgsize"/>
-                  <br/>
-                  <strong class="brandname">KARIMOKU</strong>
-                  <br/>
-                  <strong class="fs-6">가리모쿠 ZU16 암리스 1인용</strong>
-                  <br/>
-                  <strong class="price">1,516,000원</strong>
-                  <br/>
-                  <img src="https://img.echosting.cafe24.com/icon/product/ko_KR/icon_11_06.gif" alt="BEST"/>
-                </a>
-              </div>
-            </li>
-            <!-- 8번째 상품 -->
-            <li class="row">
-              <div class="prd-item">
-                <a href="#">
-                  <img src="karimoku_image/karimoku/가리모쿠 wu61 3seater.jpeg" alt="karimoku" class="product-imgsize"/>
-                  <br/>
-                  <strong class="brandname">KARIMOKU</strong>
-                  <br/>
-                  <strong class="fs-6">가리모쿠 WU61 3seater</strong>
-                  <br/>
-                  <strong class="price">4,251,000원</strong>
-                  <br/>
-                  <img src="https://img.echosting.cafe24.com/icon/product/ko_KR/icon_13_02.gif" alt="HOT"/>
-                </a>
-              </div>
-            </li>
-            <!-- 9번째 상품 -->
-            <li class="row">
-              <div class="prd-item">
-                <a href="#">
-                  <img src="karimoku_image/karimoku case study/kcs n-dt01 w2200.png" alt="karimoku casestudy" class="product-imgsize"/>
-                  <br/>
-                  <strong class="brandname">KARIMOKU CASE STUDY</strong>
-                  <br/>
-                  <strong class="fs-6">KCS N-DT01 W2200</strong>
-                  <br/>
-                  <strong class="price">7,926,000원</strong>
-                  <br/>
-                </a>
-              </div>
-            </li>
-            <!--10번째 상품 -->
-            <li class="row">
-              <div class="prd-item">
-                <a href="#">
-                  <img src="karimoku_image/karimoku/가리모쿠 uu22 sofa.jpeg" alt="karimoku" class="product-imgsize"/>
-                  <br/>
-                  <strong class="brandname">KARIMOKU</strong>
-                  <br/>
-                  <strong class="fs-6">가리모쿠 UU22 sofa</strong>
-                  <br/>
-                  <strong class="price">2,707,000원</strong>
-                  <br/>
-                </a>
-              </div>
-            </li>
-            <!-- 11번째 상품 -->
-            <li class="row">
-              <div class="prd-item">
-                <a href="#">
-                  <img src="karimoku_image/karimoku case study/kcs n-ct01 w1800.jpeg" alt="karimoku" class="product-imgsize"/>
-                  <br/>
-                  <strong class="brandname">KARIMOKU CASE STUDY</strong>
-                  <br/>
-                  <strong class="fs-6">KCS N-CT01 W1800</strong>
-                  <br/>
-                  <strong class="price">5,446,000원</strong>
-                  <br/>
-                </a>
-              </div>
-            </li>
-            <!-- 12번째 상품 -->
-            <li class="row">
-              <div class="prd-item">
-                <a href="#">
-                  <img src="karimoku_image/kunst/가리모쿠 Kunset 3 seater.jpeg" alt="Kunst" class="product-imgsize"/>
-                  <br/>
-                  <strong class="brandname">KUNST</strong>
-                  <br/>
-                  <strong class="fs-6">가리모쿠 Kunst 3 seater</strong>
-                  <br/>
-                  <strong class="price">10,198,000원</strong>
-                  <br/>
-                </a>
-              </div>
-            </li>
-            <!-- 13번째 상품 -->
-            <li class="row">
-              <div class="prd-item">
-                <a href="#">
-                  <img src="karimoku_image/karimoku/가리모쿠 du73 dining table.jpeg" alt="Karimoku" class="product-imgsize"/>
-                  <br/>
-                  <strong class="brandname">KARIMOKU</strong>
-                  <br/>
-                  <strong class="fs-6">가리모쿠 DU73 dining table</strong>
-                  <br/>
-                  <strong class="price">2,294,000원</strong>
-                  <br/>
-                </a>
-              </div>
-            </li>
-            <!-- 14번째 상품 -->
-            <li class="row">
-              <div class="prd-item">
-                <a href="#">
-                  <img src="karimoku_image/karimoku60/가리모쿠60 스탠다드블랙 2인용.jpeg" alt="Karimoku60" class="product-imgsize"/>
-                  <br/>
-                  <strong class="brandname">Karimoku60</strong>
-                  <br/>
-                  <strong class="fs-6">가리모쿠60 케이체어 2인용 스탠다드블랙+월넛</strong>
-                  <br/>
-                  <strong class="price">844,000원</strong>
-                  <br/>
-                  <img src="https://img.echosting.cafe24.com/design/skin/admin/ko_KR/ico_product_stock.gif" alt="재고보유"/>
-                </a>
-              </div>
-            </li>
-            <!-- 15번째 상품 -->
-            <li class="row">
-              <div class="prd-item">
-                <a href="#">
-                  <img src="karimoku_image/karimoku/가리모쿠 wd43 sofa 3seater.jpeg" alt="Karimoku" class="product-imgsize"/>
-                  <br/>
-                  <strong class="brandname">KARIMOKU</strong>
-                  <br/>
-                  <strong class="fs-6">가리모쿠 WD43 sofa 3seater</strong>
-                  <br/>
-                  <strong class="price">2,401,000원</strong>
-                  <br/>
-                </a>
-              </div>
-            </li>
-            <!-- 16번째 상품 -->
-            <li class="row">
-              <div class="prd-item">
-                <a href="#">
-                  <img src="karimoku_image/karimoku60/가리모쿠60 라이팅 체스트.jpeg" alt="Karimoku60" class="product-imgsize"/>
-                  <br/>
-                  <strong class="brandname">Karimoku60</strong>
-                  <br/>
-                  <strong class="fs-6">가리모쿠60 라이팅 체스트</strong>
-                  <br/>
-                  <strong class="price">1,711,000원</strong>
-                  <br/>
-                  <img src="https://img.echosting.cafe24.com/design/skin/admin/ko_KR/ico_product_stock.gif" alt="재고보유"/>
-                </a>
-              </div>
-            </li> {% endcomment %}
           </ul>
         </div>
       </div>
