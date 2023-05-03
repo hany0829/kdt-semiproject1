@@ -102,7 +102,7 @@ def profile(request, username):
 
 @login_required
 def follow(request, user_pk):
-    User = get_user_model
+    User = get_user_model()
     you = User.objects.get(pk=user_pk)
     me = request.user
 
@@ -115,7 +115,7 @@ def follow(request, user_pk):
             is_followed = True
         context = {
             'is_followed': is_followed,
-            'followings_count': you.follwings.count(),
+            'followings_count': you.followings.count(),
             'followers_count': you.followers.count(),
         }
         return JsonResponse(context)
