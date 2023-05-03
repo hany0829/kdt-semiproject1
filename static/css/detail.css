@@ -127,3 +127,9 @@ textarea {
 .board {
   margin-bottom: 30px;
 }
+
+/* 리뷰 내용
+클릭하면 나타나게 */
+.review-content {
+  display: none;
+}

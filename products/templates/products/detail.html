@@ -3,6 +3,7 @@
 
 {% block content %}
 
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
 <link rel="stylesheet" href="{% static 'css/detail.css' %}" type="text/css">
 <div class="container">
   <div class="d-flex column">
@@ -79,16 +80,22 @@
         </thead>
         <tbody>
           {% for review in reviews %}
-          <tr>
+          <tr class='review'>
             <th scope="row">1</th>
             <td>{{ review.title }}</td>
             <td>{{ review.user }}</td>
             <td>{{ review.created_at}}</td>
             <td>{{ review.rating }}</td>
           </tr>
+          <!-- 내용 -->
+          <tr class='review-content'>
+            <td colspan="5">{{ review.content }}</td>
+          </tr>
           {% endfor %}
+          
         </tbody>
       </table>
+        
         <div class="board">
           <form class="write">
             <input type="text" placeholder="제목을 입력해주세요." required>
@@ -98,7 +105,7 @@
               <p><a href="#">글쓰기</a></p>
             </div>
           </form>
-        </div>
+        </div> 
       <div class="comment">
         <div>
           이름 : <input type="text" name="my_name" size="20">
@@ -121,6 +128,51 @@
   </form>
   
 </div>
+
+{% comment %} <script>
+  // 각각의 review row를 찾아냄
+  const reviewRows = document.querySelectorAll('.review');
+  console.log(reviewRows)
+  console.log('hi')
+  // 각각의 review row에 click 이벤트를 추가
+  reviewRows.forEach(row => {
+    row.addEventListener('click', () => {
+      console.log('tttt')
+      // 해당 review row에 해당하는 review-content row를 찾아냄
+      const contentRow = row.nextElementSibling;
+      // 해당 review-content row를 보여줌
+      contentRow.style.display = 'table-row';
+    });
+  });
+  
+</script>
+
+<script>
+  $(document).ready(function() {
+    $('.review').click(function() {
+      $(this).next('.review-content').toggle();
+    });
+  });
+</script>  {% endcomment %}
+
+<script>
+  // 각각의 review row를 찾아냄
+  const reviewRows = document.querySelectorAll('.review');
+
+  // 각각의 review row에 click 이벤트를 추가
+  reviewRows.forEach(row => {
+    row.addEventListener('click', () => {
+      // 해당 review row에 해당하는 review-content row를 찾아냄
+      const contentRow = row.nextElementSibling;
+      // 해당 review-content row를 보여주거나 감춤
+      if (contentRow.style.display === 'none') {
+        contentRow.style.display = 'table-row';
+      } else {
+        contentRow.style.display = 'none';
+      }
+    });
+  });
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
