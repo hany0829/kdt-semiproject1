@@ -8,5 +8,5 @@ urlpatterns = [
     # 상품 디테일
     # path('category/<int:category_pk>/product/<int:product_pk>', views.category_products, name='category_products'),
     path('<int:product_pk>/', views.product_detail, name='product_detail'),
-    path('', views.index, name='index')
+    path('', views.index, name='index'),
 ]
