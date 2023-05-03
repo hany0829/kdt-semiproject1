@@ -1,4 +1,5 @@
-/* 노말라이즈 */
+/* 노말라이즈
+    캐로젤 */
 body,
 ul,
 li {
@@ -62,10 +63,10 @@ a {
   height: auto;
 }
 
-.carousel-1[data-carousel-1-autoplay-status="Y"] .play {
+.carousel-1[data-carousel-1-autoplay-status='Y'] .play {
   display: none;
 }
 
-.carousel-1[data-carousel-1-autoplay-status="N"] .stop {
+.carousel-1[data-carousel-1-autoplay-status='N'] .stop {
   display: none;
 }
