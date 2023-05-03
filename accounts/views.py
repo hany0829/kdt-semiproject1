@@ -11,9 +11,6 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 
 def login(request):
-    if request.user.is_authenticated:
-        return redirect('products:index')
-    
     if request.method == 'POST':
         form = CustomAuthentication(request, request.POST)
         if form.is_valid():
@@ -85,10 +82,7 @@ def change_password(request):
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)
-            messages.success(request, '비밀번호가 변경 되었습니다!')
             return redirect('products:index')
-        else:
-            messages.error(request, 'Please correct the error below.')
     else:
         form = PasswordChangeForm(request.user)
     context = {
