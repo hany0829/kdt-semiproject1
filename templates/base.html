@@ -11,6 +11,7 @@
     <!-- base.css(헤더, 푸터) -->
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     
+
     {% block style %}{% endblock style %}
     
   </head>
@@ -153,13 +154,13 @@
           <h3 class="textstyle">MY PAGE</h3>
           <ul class="p-0">
             <li>
-              <a href="#">Login</a>
+              <a href="{% url 'accounts:login' %}">Login</a>
             </li>
             <li>
-              <a href="#">Join</a>
+              <a href="{% url 'accounts:signup' %}">Join</a>
             </li>
             <li>
-              <a href="#">Mypage</a>
+              <a href="{% url 'accounts:update' %}">Mypage</a>
             </li>
           </ul>
         </div>
