@@ -1,11 +1,11 @@
 from django import forms
 from .models import Review, Comment
 
-class ReivewForm(forms.ModelForm):
-    rating = forms.ChoiceField(choices=[(1, '★'), (2, '★★'), (3, '★★★'), (4, '★★★★'), (5, '★★★★★')], widget=forms.RadioSelect())
+class ReviewForm(forms.ModelForm):
+    rating = forms.ChoiceField(choices=[(1, '★'), (2, '★★'), (3, '★★★'), (4, '★★★★'), (5, '★★★★★')], widget=forms.RadioSelect(), required=False)
     class Meta:
         model = Review
-        fields = ('title', 'content', 'image','rating',)
+        fields = ('title', 'content', 'rating',)
 
 
 class CommentForm(forms.ModelForm):
