@@ -4,7 +4,7 @@ from products.models import Product
 
 # Create your models here.
 class Review(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user    = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='reviews')
     # 리뷰 좋아요
     like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_reviews')
