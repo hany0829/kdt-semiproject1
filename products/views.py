@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from .models import Product, Category
-
+from reviews.forms import ReivewForm
 
 # 백엔드에서 결과 확인하기 위하여 임시로 import
 from django.http import JsonResponse
@@ -40,7 +40,6 @@ def category_products(request, category_name):
 def product_detail(request, product_pk):
     # 특정상품 조회
     product = Product.objects.get(pk=product_pk)
-
 
     context = {
         'product':product,

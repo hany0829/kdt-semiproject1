@@ -14,8 +14,8 @@
       @import url('https://fonts.googleapis.com/css2?family=Mynerve&family=Noto+Sans+KR:wght@900&display=swap');
 
       .header-logo img {
-        width: 150px;
-        height: 30px;
+        width: 100px;
+        height: 100px;
       }
 
       .header-wrap {
@@ -27,6 +27,10 @@
         list-style: none;
         float: left;
         margin-right: 20px;
+      }
+
+      .li_img {
+        margin-right:5px;
       }
 
       .header-gnb img {
@@ -202,6 +206,7 @@
 
       .footer_nav {
         background-color: rgb(244, 241, 236);
+        margin-top:100px;
       }
 
       .textstyle {
@@ -237,7 +242,7 @@
             <!-- 로고 -->
             <span class="first-logo">
               <a href="{% url 'products:index' %}">
-                <img src="http://www.remod.co.kr/onimg/logo@3x.png" alt="logo(big)">
+                <img src="{% static 'img/creamshasha.png' %}" alt="logo(big)">
               </a>
             </span>
           </div>
