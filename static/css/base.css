@@ -210,3 +210,11 @@ a {
 .footer-cont {
   margin-right: 40px;
 }
+
+#search-btn {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
+}

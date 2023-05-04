@@ -54,3 +54,16 @@ def product_detail(request, product_pk):
     }
     
     return render(request, 'products/detail.html', context)
+
+
+# 상품 검색
+def search(request):
+    query = request.GET.get('searched', '')
+    products = Product.objects.filter(name__contains=query)
+    
+    context = {
+        'products':products,
+    }
+
+    return render(request, 'products/search.html', context)
+    

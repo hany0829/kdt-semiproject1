@@ -16,13 +16,12 @@
         <div class="profile-box"></div>
         {% if request.user.is_authenticated %}
         <div class="d-flex flex-column mb-3 mt-3">
-          <div class="profile-text">안녕하세요! <span>{{ user.username }}</span>님은 일반회원 입니다.</div>
+          <div class="profile-text">안녕하세요! <span>{{ person.username }}</span>님은 일반회원 입니다.</div>
           
           <div>
               팔로잉 : <span id="followings-count">{{ person.followings.all|length }}</span> / 
               팔로워 : <span id="followers-count">{{ person.followers.all|length }}</span>
             {% if request.user != person %}
-
                 <form id="follow-form" data-user-id="{{ person.pk }}">
                   {% csrf_token %}
                   {% if request.user in person.followers.all %}
@@ -31,38 +30,12 @@
                     <input class="btn btn-danger btn-sm"  type="submit" value="팔로우">
                   {% endif %}
                 </form>
-
             {% endif %}
           </div>
         </div>
 
-
-
         {% endif %}
     </div>
-    <div class="container">
-        <form id="update-form" action="{% url 'accounts:update' %}" method="POST">
-        {% csrf_token %}
-        <div class="input-container">
-            <label for="username">아이디</label>
-            <input type="text" id="username" name="username" value="{{ user.username }}" required>
-        </div>
-
-        <div class="input-container">
-            <label for="first_name">이름</label>
-            <input type="text" id="first_name" name="first_name" value="{{user.first_name}}" required>
-        </div>
-
-        <div class="input-container">
-            <label for="email">이메일</label>
-            <input type="email" id="email" name="email" value="{{ user.email }}" required>
-        </div>
-        </form>
-
-        <form id="logout-form" action="{% url 'accounts:logout' %}" method="POST">
-            {% csrf_token %}
-            <input type="submit" value="Logout">
-        </form>
 
         <div class="btn-group">
           <button type="submit"><a href="{% url 'accounts:update' %}">회원정보수정</a></button>

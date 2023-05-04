@@ -73,17 +73,18 @@
             <th scope="col">작성자</th>
             <th scope="col">작성일</th>
             <th scope="col">별점</th>
-            {% comment %}
-            추가
+            <!--
+              추가
             좋아요
             조회수?
-            {% endcomment %}
+            -->
+            
           </tr>
         </thead>
         <tbody>
           {% for review in reviews %}
           <tr class='review'>
-              <th scope="row">1</th>
+              <th scope="row">{{review.pk}}</th>
               <td>{{ review.title }}</td>
               <td>{{ review.user }}</td>
               <td>{{ review.created_at}}</td>
@@ -143,26 +144,8 @@
         </button>
       </div>  
       
-      {% comment %} <div class="comment">
-        <div>
-          이름 : <input type="text" name="my_name" size="20">
-          비밀번호 : <input type="password" name="my_password" size="20">
-        </div>
-        <form>
-          <div>
-            <p><textarea cols="100" rows="5"></textarea></p>
-            <p><input type="submit" value="Submit"></p>
-          </div>
-        </form>
-      </div>  {% endcomment %}
     </div>
   </div>
-  {% comment %} <h1>폼!!! {{ request.user }}님</h1>
-  <form action="{% url 'reviews:create_review' product.pk %}" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="">
-  </form> {% endcomment %}
   
 </div>
 <script>
@@ -170,15 +153,17 @@
   const reviewRows = document.querySelectorAll('.review');
   const reviewContents = document.querySelectorAll('.review-content');
 
-  // 리뷰 컨텐츠를 감춤
+  // 미리 리뷰 컨텐츠를 감춤
   reviewContents.forEach(content => {
     content.style.display = 'none';
   });
 
   // 각각의 review row에 click 이벤트를 추가
+  // 누르면 없애!
   reviewRows.forEach(row => {
     row.addEventListener('click', () => {
-      // 해당 review row에 해당하는 review-content row를 찾아냄
+
+      // 리뷰 내용
       const contentRow = row.nextElementSibling;
 
       // 해당 review-content row를 보여주거나 감춤
@@ -188,7 +173,7 @@
         contentRow.style.display = 'none';
       }
 
-      // 해당 review-content 내부의 comment-form과 comment-content들을 찾아냄
+      // 댓글폼, 댓글 내용
       const commentForm = contentRow.querySelector('.comment-form');
       const commentContents = contentRow.querySelectorAll('.comment-content');
 
@@ -211,42 +196,6 @@
   });
 </script>
 
-{% comment %} <script>
-  // 각각의 review row와 comment-form을 찾아냄
-  const reviewRows = document.querySelectorAll('.review');
-  const commentForms = document.querySelectorAll('.comment-form');
-  const commentContents = document.querySelectorAll('.comment-content');
-
-  // 리뷰와 댓글 폼, 댓글 내용을 감춤
-  commentForms.forEach(form => {
-    form.style.display = 'none';
-  });
-  commentContents.forEach(content => {
-    content.style.display = 'none';
-  });
-
-  // 각각의 review row에 click 이벤트를 추가
-  reviewRows.forEach(row => {
-    row.addEventListener('click', () => {
-      // 해당 review row에 해당하는 review-content row와 comment-form row를 찾아냄
-      const contentRow = row.nextElementSibling;
-      const formRow = contentRow.nextElementSibling;
-
-      // 해당 review-content row와 comment-form row를 보여주거나 감춤
-      if (contentRow.style.display === 'none') {
-        contentRow.style.display = 'table-row';
-        if (formRow.classList.contains('comment-form')) {
-          formRow.style.display = 'table-row';
-        }
-      } else {
-        contentRow.style.display = 'none';
-        if (formRow.classList.contains('comment-form')) {
-          formRow.style.display = 'none';
-        }
-      }
-    });
-  });
-</script> {% endcomment %}
 
 
 
