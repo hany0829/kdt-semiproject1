@@ -1,11 +1,28 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-  <h1>리뷰 생성</h1>
-  <form action="{% url 'reviews:create_review' category_pk=product.category.pk product_pk=product.pk %}" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit">
-  </form>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="stylesheet" href="{% static 'css/review-create.css' %}">
+  
+  <h3 class="text" style="text-align: center">리뷰 생성</h3>
+  <div class="board" style="text-align: center">
+    <form class="" action="{% url 'reviews:create_review' product_pk=product.pk %}" method="POST">
+      {% csrf_token %}
+      <div class="write">
+        <div class="form-group">
+          {{ form.title }}
+        </div>
+        <div class="form-group" style="margin-bottom: 1rem;">
+          {{ form.content }}
+        </div>
+      </div>
+      <div class="form-group" style="text-align: center;">
+        {{ form.rating }}
+        <input type="submit">
+      </div>
+    </form>
+  </div>
 {% endblock content %}
+
 

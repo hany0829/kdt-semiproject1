@@ -44,11 +44,13 @@ def product_detail(request, product_pk):
     product = Product.objects.get(pk=product_pk)
     form = ReviewForm()
     reviews = Review.objects.filter(product=product)
+    # comments = reviews.comment_set.all()
 
     context = {
         'product':product,
         'form':form,
         'reviews':reviews,
+        # 'comments':comments,
     }
     
     return render(request, 'products/detail.html', context)

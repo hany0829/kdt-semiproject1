@@ -57,19 +57,19 @@ def comment_create(request, product_pk, review_pk):
         comment.review = review
         comment.user = request.user
         comment.save()
-        return redirect('reviews:detail', product_pk=product_pk, review_pk=review.pk)
+        return redirect('products:product_detail', product_pk=product_pk)
     context = {
         'review':review,
         'comment_form':comment_form,
     }
-    return render(request, 'reviews/detail.html', context)
+    return render(request, 'products/product_detail.html', context)
 
 
 def comment_delete(request, product_pk, review_pk, comment_pk):
     comment = Comment.objects.get(pk=comment_pk)
     if request.user == comment.user:
         comment.delete()
-    return redirect('reviews:detail', product_pk=product_pk, review_pk=review_pk)
+    return redirect('products:detail', product_pk=product_pk, review_pk=review_pk)
 
 
 def like_review(request, product_pk, review_pk):

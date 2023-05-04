@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 
+
+
 {% block content %}
 
 <link rel="stylesheet" href="{% static 'css/styles.css' %}">
@@ -81,32 +83,67 @@
         <tbody>
           {% for review in reviews %}
           <tr class='review'>
-            <th scope="row">1</th>
-            <td>{{ review.title }}</td>
-            <td>{{ review.user }}</td>
-            <td>{{ review.created_at}}</td>
-            <td>{{ review.rating }}</td>
+              <th scope="row">1</th>
+              <td>{{ review.title }}</td>
+              <td>{{ review.user }}</td>
+              <td>{{ review.created_at}}</td>
+              <td>
+                {% if review.rating == 1 %}
+                  ⭐☆☆☆☆
+                {% elif review.rating == 2 %}
+                  ⭐⭐☆☆☆
+                {% elif review.rating == 3 %}
+                  ⭐⭐⭐☆☆
+                {% elif review.rating == 4 %}
+                  ⭐⭐⭐⭐☆
+                {% elif review.rating == 5 %}
+                  ⭐⭐⭐⭐⭐
+                {% else %}
+                  ☆☆☆☆☆
+                {% endif %}
+        </td> 
           </tr>
-          <!-- 내용 -->
-          <tr class='review-content'>
-            <td colspan="5">{{ review.content }}</td>
+      
+          <!-- 내용 display: none-->
+          <tr class='review-content' style="display: none;">
+              <td colspan="5">
+                  {{ review.content }}
+      
+                  <!-- 댓글 -->
+                  {% for comment in review.comment_set.all %}
+                  <div class='comment-content' style="display: none;">
+                      {{ comment.content }}
+                  </div>
+                  {% empty %}
+                  <div class='comment-content' style="display: none;">
+                      댓글이 없습니다.
+                  </div>
+                  {% endfor %}
+      
+                  <!-- 댓글 작성 폼 -->
+                  <div class='comment-form' style="display: none;">
+                      <form method="post" action="{% url 'reviews:comment_create' product_pk=product.pk review_pk=review.pk %}">
+                          {% csrf_token %}
+                          <div class="form-group">
+                              <label for="comment_content">댓글 작성</label>
+                              <textarea class="form-control" id="comment_content" rows="3" name="content"></textarea>
+                          </div>
+                          <button type="submit" class="btn btn-primary">댓글 등록</button>
+                      </form>
+                  </div>
+              </td>
           </tr>
           {% endfor %}
-          
-        </tbody>
+      </tbody>
       </table>
-        
-        <div class="board">
-          <form class="write">
-            <input type="text" placeholder="제목을 입력해주세요." required>
-            <hr>
-            <input type="text" placeholder="내용을 입력해주세요." class="text" required>
-            <div class="button">
-              <p><a href="#">글쓰기</a></p>
-            </div>
-          </form>
-        </div> 
-      <div class="comment">
+      <!-- 글쓰기 링크 -->
+      <div class="d-flex justify-content-end">
+        <button type="button" class="btn btn-outline-secondary">
+          <a  href="{% url 'reviews:create_review' product.pk %}">리뷰 작성하기</a>
+        </button>
+      </div>  
+      
+      {% comment %} <div class="comment">
         <div>
           이름 : <input type="text" name="my_name" size="20">
           비밀번호 : <input type="password" name="my_password" size="20">
@@ -117,62 +154,104 @@
             <p><input type="submit" value="Submit"></p>
           </div>
         </form>
-      </div>
+      </div>  {% endcomment %}
     </div>
   </div>
-  <h1>폼!!! {{ request.user }}님</h1>
+  {% comment %} <h1>폼!!! {{ request.user }}님</h1>
   <form action="{% url 'reviews:create_review' product.pk %}" method="POST">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="">
-  </form>
+  </form> {% endcomment %}
   
 </div>
-
-{% comment %} <script>
-  // 각각의 review row를 찾아냄
-  const reviewRows = document.querySelectorAll('.review');
-  console.log(reviewRows)
-  console.log('hi')
-  // 각각의 review row에 click 이벤트를 추가
-  reviewRows.forEach(row => {
-    row.addEventListener('click', () => {
-      console.log('tttt')
-      // 해당 review row에 해당하는 review-content row를 찾아냄
-      const contentRow = row.nextElementSibling;
-      // 해당 review-content row를 보여줌
-      contentRow.style.display = 'table-row';
-    });
-  });
-  
-</script>
-
 <script>
-  $(document).ready(function() {
-    $('.review').click(function() {
-      $(this).next('.review-content').toggle();
-    });
-  });
-</script>  {% endcomment %}
-
-<script>
-  // 각각의 review row를 찾아냄
+  // 각각의 review row와 review-content를 찾아냄
   const reviewRows = document.querySelectorAll('.review');
+  const reviewContents = document.querySelectorAll('.review-content');
+
+  // 리뷰 컨텐츠를 감춤
+  reviewContents.forEach(content => {
+    content.style.display = 'none';
+  });
 
   // 각각의 review row에 click 이벤트를 추가
   reviewRows.forEach(row => {
     row.addEventListener('click', () => {
       // 해당 review row에 해당하는 review-content row를 찾아냄
       const contentRow = row.nextElementSibling;
+
       // 해당 review-content row를 보여주거나 감춤
       if (contentRow.style.display === 'none') {
         contentRow.style.display = 'table-row';
       } else {
         contentRow.style.display = 'none';
       }
+
+      // 해당 review-content 내부의 comment-form과 comment-content들을 찾아냄
+      const commentForm = contentRow.querySelector('.comment-form');
+      const commentContents = contentRow.querySelectorAll('.comment-content');
+
+      // 댓글 작성 폼을 보여주거나 감춤
+      if (commentForm.style.display === 'none') {
+        commentForm.style.display = 'block';
+      } else {
+        commentForm.style.display = 'none';
+      }
+
+      // 각 댓글 내용을 보여주거나 감춤
+      commentContents.forEach(commentContent => {
+        if (commentContent.style.display === 'none') {
+          commentContent.style.display = 'block';
+        } else {
+          commentContent.style.display = 'none';
+        }
+      });
     });
   });
 </script>
+
+{% comment %} <script>
+  // 각각의 review row와 comment-form을 찾아냄
+  const reviewRows = document.querySelectorAll('.review');
+  const commentForms = document.querySelectorAll('.comment-form');
+  const commentContents = document.querySelectorAll('.comment-content');
+
+  // 리뷰와 댓글 폼, 댓글 내용을 감춤
+  commentForms.forEach(form => {
+    form.style.display = 'none';
+  });
+  commentContents.forEach(content => {
+    content.style.display = 'none';
+  });
+
+  // 각각의 review row에 click 이벤트를 추가
+  reviewRows.forEach(row => {
+    row.addEventListener('click', () => {
+      // 해당 review row에 해당하는 review-content row와 comment-form row를 찾아냄
+      const contentRow = row.nextElementSibling;
+      const formRow = contentRow.nextElementSibling;
+
+      // 해당 review-content row와 comment-form row를 보여주거나 감춤
+      if (contentRow.style.display === 'none') {
+        contentRow.style.display = 'table-row';
+        if (formRow.classList.contains('comment-form')) {
+          formRow.style.display = 'table-row';
+        }
+      } else {
+        contentRow.style.display = 'none';
+        if (formRow.classList.contains('comment-form')) {
+          formRow.style.display = 'none';
+        }
+      }
+    });
+  });
+</script> {% endcomment %}
+
+
+
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
