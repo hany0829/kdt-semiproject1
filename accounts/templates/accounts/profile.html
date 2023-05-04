@@ -3,6 +3,13 @@
 
 
 {% block content %}
+{% block style %}
+<style>
+.profile-box {
+  background-image: url('{% static 'image/user.png' %}');
+}
+</style>
+{% endblock style %}
 <link rel="stylesheet" href="{% static 'css/update.css' %}">
 <h1>회원정보</h1>
     <div class="profile-container">
@@ -57,6 +64,9 @@
             <input type="submit" value="Logout">
         </form>
 
+        <div class="btn-group">
+          <button type="submit"><a href="{% url 'accounts:update' %}">회원정보수정</a></button>
+      </div>
     </div>
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

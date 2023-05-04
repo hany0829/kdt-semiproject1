@@ -1,15 +1,10 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 {% load static %}
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/login_css.css' %}">
-    <script src="{% static 'js/login_js.js' %}"></script>
-    <title>로그인</title>
+  <link rel="stylesheet" href="{% static 'css/login_css.css' %}">
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
-<body>
+{% block content %}
     <div class="login-container">
         <h2>로그인</h2>
         <form action="{% url 'accounts:login' %}" id="login-form" method="POST">
@@ -35,5 +30,4 @@
             <div>비밀번호 찾기</div>
           </div>
         </div>
-</body>
-</html>
+{% endblock content %}

@@ -59,21 +59,29 @@
               <a href="#" class="nav-link" id="profileDropdown" role="button">
                 <img src="https://www.remod.co.kr/onimg/ico_user@3x.png" alt="myshop">
               </a>
-              <ul class="dropdown-menu" aria-labelledby="profileDropdown">
-                <li>
-                  <a class="dropdown-item" href="#">LOGIN</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">JOIN</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">MYPAGE</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">REVIEW</a>
-                </li>
-              </ul>
-            </li>
+              {% if request.user.is_authenticated %}
+                <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                  <li>
+                    <a class="dropdown-item" href="{% url 'accounts:logout' %}">LOGOUT</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="{% url 'accounts:profile' user.username %}">MYPAGE</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">REVIEW</a>
+                  </li>
+                </ul>
+              {% else %}
+                <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                  <li>
+                    <a class="dropdown-item" href="{% url 'accounts:login' %}">LOGIN</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="{% url 'accounts:signup' %}">JOIN</a>
+                  </li>
+                </ul>
+              </li>
+            {% endif %}
             <li>
               <a href="#">
                 <img src="https://www.remod.co.kr/onimg/ico_cart@3x.png" alt="basket"></a>
@@ -152,17 +160,20 @@
         </div>
         <div class="footer-cont mypage">
           <h3 class="textstyle">MY PAGE</h3>
-          <ul class="p-0">
+          {% if request.user.is_authenticated %}
+            <ul class="p-0">
+              <li>
+                <a href="{% url 'accounts:profile' user.username %}">Mypage</a>
+              </li>
+            </ul>
+          {% else %}
             <li>
               <a href="{% url 'accounts:login' %}">Login</a>
             </li>
             <li>
               <a href="{% url 'accounts:signup' %}">Join</a>
             </li>
-            <li>
-              <a href="{% url 'accounts:update' %}">Mypage</a>
-            </li>
-          </ul>
+          {% endif %}
         </div>
       </div>
     </div>
