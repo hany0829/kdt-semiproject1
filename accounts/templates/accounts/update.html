@@ -3,6 +3,13 @@
 
 
 {% block content %}
+{% block style %}
+<style>
+.profile-box {
+  background-image: url('{% static 'image/user.png' %}');
+}
+</style>
+{% endblock style %}
 <link rel="stylesheet" href="{% static 'css/update.css' %}">
 <h1>회원정보수정</h1>
     <div class="profile-container">
@@ -29,23 +36,23 @@
             <input type="email" id="email" name="email" value="{{ user.email }}" required>
         </div>
 
-        
-        <div class="btn-group">
-            <button type="submit">회원정보수정</button>
-            <button type="submit">비밀번호변경</button>
-        </div>
-        </form>
-        
-        <form id="delete-form" action="{% url 'accounts:delete' %}" method="POST">
-            {% csrf_token %}
-            <input type="submit" value="회원탈퇴">
-        </form>
+        {% if request.user.is_authenticated %}
+            <div class="btn-group">
+                <button type="submit">회원정보수정</button>
+                <button type="submit">비밀번호변경</button>
+            </div>
+            </form>
+            
+            <form id="delete-form" action="{% url 'accounts:delete' %}" method="POST">
+                {% csrf_token %}
+                <input type="submit" value="회원탈퇴">
+            </form>
 
-        <form id="logout-form" action="{% url 'accounts:logout' %}" method="POST">
-            {% csrf_token %}
-            <input type="submit" value="Logout">
-        </form>
-
+            <form id="logout-form" action="{% url 'accounts:logout' %}" method="POST">
+                {% csrf_token %}
+                <input type="submit" value="Logout">
+            </form>
+        {% endif %}
     </div>
 {% endblock content %}
 

@@ -72,9 +72,10 @@ button:hover {
   margin-right: 20px;
   margin-left: 10px;
   background-image: url('{% static 'image/user.png' %}');
-  background-size: cover; /* 이미지 크기 조절 옵션 */
-  background-position: center;
+  background-size: cover; 
+  background-position: center; 
 }
+
 .profile-text {
   padding: 20px;
   text-align: center;
