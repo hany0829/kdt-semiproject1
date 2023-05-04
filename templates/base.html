@@ -21,14 +21,10 @@
 
     <div id="mySidenav" class="sidenav">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <a href="#">Brand</a>
       <a href="#">Sofa</a>
       <a href="#">Chair</a>
       <a href="#">Tables</a>
-      <a href="#">Beds</a>
       <a href="#">Acc.</a>
-      <a href="#">Sale</a>
-      <a href="#">Review</a>
     </div>
     <div id="header">
       <div class="header-wrap d-flex flex-column mt-5">
@@ -42,19 +38,39 @@
             </span>
           </div>
           
+          
           <!-- 정보 -->
           <div class="header-gnb d-flex">
+            
             <!-- 유저이름 -->
+            {% if request.user.is_authenticated %}
             <li>
               <span class='m-0'><a href="#">{{ user }}님, 안녕하세요!</a></span>
             </li>
+            {% else %}
+            <li>
+              <span class='m-0'><a href="#">Join us</a></span>
+            </li>
+            {% endif %}
             <!-- 검색창 -->
             <li id="" search="search">
-              <input type="text" class="search-input d-none d-lg-inline" placeholder="">
-              <span class="li_img">
-                <img src="https://www.remod.co.kr/onimg/ico_search@3x.png" alt="search">
-              </span>
+              <div>
+                <form id="searchForm" method="GET" action="{% url 'products:search' %}">
+                  {% csrf_token %}
+                  <input type="text" class="search-input d-none d-lg-inline" name="searched">
+                  <button style="border: none;
+                  outline: none;
+                  background-color: transparent;
+                  padding: 0;
+                  cursor: pointer;" type="submit"><span class="li_img">
+                    <img src="https://www.remod.co.kr/onimg/ico_search@3x.png" alt="search">
+                  </span></button>
+                  
+                </form> 
+              </div>
+        
             </li>
+
             <li class="nav-item dropdown">
               <a href="#" class="nav-link" id="profileDropdown" role="button">
                 <img src="https://www.remod.co.kr/onimg/ico_user@3x.png" alt="myshop">
@@ -96,30 +112,25 @@
         </div>
 
         <!-- 네비게이션 바 -->
-        <div class="header-nav d-none d-lg-flex mt-4">
-          <a href="" class="nav-link">Brand</a>
+        <div class="header-nav d-none d-lg-flex mt-4">        
           <div class="nav-link">
             <a href="{% url 'products:category_products' 'Sofa' %}">Sofa</a>
             <div class="nav-dropdown">
-              <a href="" class="nav-dropdown-item">Product1</a>
-              <a href="" class="nav-dropdown-item">Product2</a>
-              <a href="" class="nav-dropdown-item">Product3</a>
+              <a href="" class="nav-dropdown-item">1인소파</a>
+              <a href="" class="nav-dropdown-item">2인소파</a>
+              <a href="" class="nav-dropdown-item">3인소파</a>
             </div>
           </div>
           <div class="nav-link">
             <a href="{% url 'products:category_products' 'Chair' %}">Chair</a>
             <div class="nav-dropdown">
-              <a href="" class="nav-dropdown-item">Product1</a>
+              <a href="" class="nav-dropdown-item">1</a>
               <a href="" class="nav-dropdown-item">Product2</a>
-              <a href="" class="nav-dropdown-item">Product3</a>
             </div>
           </div>
           <a href="{% url 'products:category_products' 'Tables' %}" class="nav-link">Tables</a>
           <div class="dropdown-menu"></div>
-          <a href="" class="nav-link">Beds</a>
           <a href="" class="nav-link">Acc.</a>
-          <a href="" class="nav-link">Sale</a>
-          <a href="" class="nav-link">Review</a>
         </div>
       </div>
     </div>

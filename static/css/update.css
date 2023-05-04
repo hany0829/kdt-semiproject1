@@ -72,8 +72,8 @@ button:hover {
   margin-right: 20px;
   margin-left: 10px;
   background-image: url('{% static 'image/user.png' %}');
-  background-size: cover; 
-  background-position: center; 
+  background-size: cover;
+  background-position: center;
 }
 
 .profile-text {
@@ -109,4 +109,11 @@ input {
 }
 .btn-group button:last-child {
   margin-right: 0;
+}
+
+.btn-group a {
+  text-decoration: none;
+  color: white;
+  /* text-decoration: none;
+  color: white; */
 }
