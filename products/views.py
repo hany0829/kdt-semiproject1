@@ -1,8 +1,8 @@
 from django.shortcuts import render,redirect
 from .models import Product, Category
 # 리뷰관련
-from reviews.models import Review
-from reviews.forms import ReviewForm
+from reviews.models import Review, Comment
+from reviews.forms import ReviewForm, CommentForm
 
 # 백엔드에서 결과 확인하기 위하여 임시로 import
 from django.http import JsonResponse

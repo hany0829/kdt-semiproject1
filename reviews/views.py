@@ -52,18 +52,21 @@ def update_review(request, product_pk, review_pk):
 def comment_create(request, product_pk, review_pk):
     review = Review.objects.get(pk=review_pk)
     comment_form = CommentForm(request.POST)
+    # 추가
+    product = review.product
     if comment_form.is_valid():
         comment = comment_form.save(commit=False)
         comment.review = review
         comment.user = request.user
         comment.save()
-        return redirect('reviews:detail', product_pk=product_pk, review_pk=review.pk)
+        return redirect('products:product_detail', product_pk=product_pk, review_pk=review.pk)
     context = {
         'review':review,
         'comment_form':comment_form,
     }
-    return render(request, 'reviews/detail.html', context)
-
+    # return render(request, 'reviews/detail.html', context)
+    # 변경
+    return render(request, 'products/detail.html', context)
 
 def comment_delete(request, product_pk, review_pk, comment_pk):
     comment = Comment.objects.get(pk=comment_pk)
