@@ -90,6 +90,12 @@
           </li>
         </ul>
       </div>
+      {% if messages %}
+	{% for message in messages %}
+		{{ message.tags }}  // SUCCESS
+		{{ message.message }}  // 성공적으로 회원가입 완료
+	{% endfor %}
+{% endif %}
       <!--BEST PRODUCT -->
       <div class="bestproduct-area">
         <div class="best">
@@ -103,7 +109,7 @@
             {% for product in products %}
               <li class="row li-slice">
                 <div class="prd-item">
-                  <a href="#">
+                  <a href="{% url 'products:product_detail' product.pk %}">
                     <img src="{{ product.image.url }}" alt="karimoku60" class="product-imgsize"/>
                     <br/>
                     <strong class="brandname">product.brand</strong>
