@@ -8,6 +8,11 @@
       <h2>로그인</h2>
       <form action="{% url 'accounts:login' %}" id="login-form" method="POST">
         {% csrf_token %}
+        {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+          로그인에 실패하였습니다. 아이디와 비밀번호를 확인해주세요.
+        </div>
+        {% endif %}
         <div class="form-group">
           <label for="{{ form.username.auto_id }}">아이디</label>
           {{ form.username }}
