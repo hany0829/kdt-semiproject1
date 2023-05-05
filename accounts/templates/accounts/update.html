@@ -35,12 +35,13 @@
         <label for="email">이메일</label>
         <input type="email" id="email" name="email" value="{{ user.email }}" required="required" class="all-input">
       </div>
+      <div class="btn-group mb-3 ">
+        <button type="submit">수정완료</button>
+      </div>
     </form>
 
     {% if request.user.is_authenticated %}
       <div class="btn-group">
-        <button type="submit">수정완료</button> 
-        {% comment %} 한영님 이거 연결해주세요 {% endcomment %}
         <button type="submit">
           <a href="{% url 'accounts:change_password' %}">비밀번호변경</a>
         </button>
