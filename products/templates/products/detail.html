@@ -73,6 +73,7 @@
             <th scope="col">작성자</th>
             <th scope="col">작성일</th>
             <th scope="col">별점</th>
+            <th scope="col">좋아요</th>
             <!--
               추가
             좋아요
@@ -102,18 +103,39 @@
                 {% else %}
                   ☆☆☆☆☆
                 {% endif %}
-        </td> 
+              </td>
+              <td>
+                <!-- 좋아요 버튼 -->
+                 <form action="{% url 'reviews:like_review' product.pk review.pk %}" method="POST">
+                  {% csrf_token %}
+                  {% if request.user in review.like_users.all %}
+                    <input type="submit" value="좋아요 취소">
+                  {% else %}
+                    <input type="submit" value="좋아요">
+                  {% endif %}
+                </form>
+                <span class="like-count">{{ review.like_users.all.count }}</span>
+                {% comment %} <form class="like-review-form" method="POST" data-url="{% url 'reviews:like_review' product.pk review.pk %}">
+                  {% csrf_token %}
+                  {% if request.user in review.like_users.all %}
+                    <button type="submit" class="unlike-btn">좋아요 취소</button>
+                  {% else %}
+                    <button type="submit" class="like-btn">좋아요</button>
+                  {% endif %}
+                </form> {% endcomment %}
+              </td> 
           </tr>
       
           <!-- 내용 display: none-->
           <tr class='review-content' style="display: none;">
               <td colspan="5">
                   {{ review.content }}
-      
+                  <hr>
                   <!-- 댓글 -->
                   {% for comment in review.comment_set.all %}
                   <div class='comment-content' style="display: none;">
                       {{ comment.content }}
+                
                   </div>
                   {% empty %}
                   <div class='comment-content' style="display: none;">
@@ -194,6 +216,75 @@
       });
     });
   });
+
+  //좋아요 비동기
+  {% comment %} $(document).ready(function() {
+    // 좋아요 버튼 클릭 이벤트 처리
+    $('.like-review-form').on('submit', function(event) {
+      event.preventDefault(); // 기본 동작 중지
+      const $form = $(this);
+      const url = $form.data('url');
+  
+      $.ajax({
+        url: url,
+        method: 'POST',
+        dataType: 'json',
+        success: function(response) {
+          // 좋아요 버튼 업데이트
+          const $likeBtn = $form.find('.like-btn');
+          const $unlikeBtn = $form.find('.unlike-btn');
+          const likeCount = response.like_count;
+          if (response.liked) {
+            $likeBtn.hide();
+            $unlikeBtn.show();
+          } else {
+            $likeBtn.show();
+            $unlikeBtn.hide();
+          }
+  
+          // 좋아요 수 업데이트
+          $form.closest('.review-item').find('.like-count').text(likeCount);
+        },
+        error: function(response) {
+          console.log(response);
+        }
+      });
+    });
+  }); {% endcomment %}
+  {% comment %} $(document).ready(function() {
+    // 좋아요 버튼 클릭 이벤트 처리
+    $(document).on('submit', '.like-review-form', function(event) {
+      event.preventDefault(); // 기본 동작 중지
+      const $form = $(this);
+      const url = $form.data('url');
+  
+      $.ajax({
+        url: url,
+        method: 'POST',
+        dataType: 'json',
+        success: function(response) {
+          // 좋아요 버튼 업데이트
+          const $likeBtn = $form.find('.like-btn');
+          const $unlikeBtn = $form.find('.unlike-btn');
+          const likeCount = response.like_count;
+          if (response.liked) {
+            $likeBtn.hide();
+            $unlikeBtn.show();
+          } else {
+            $likeBtn.show();
+            $unlikeBtn.hide();
+          }
+  
+          // 좋아요 수 업데이트
+          $form.closest('.review-item').find('.like-count').text(likeCount);
+        },
+        error: function(response) {
+          console.log(response);
+        }
+      });
+    });
+  }); {% endcomment %}
+  
 </script>
 
 
