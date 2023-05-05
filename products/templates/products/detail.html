@@ -128,11 +128,22 @@
       
           <!-- 내용 display: none-->
           <tr class='review-content' style="display: none;">
-              <td colspan="6">
-                <h5></h5>
-                <span class="border border-primary">
 
-                  {{ review.content }}</span>
+              <td colspan="6">
+                  <h5></h5>
+                  <p class="border border-primary">{{ review.content }}</p>
+                  <p>
+                    {% comment %} <form action="{% url 'reviews:like_comment' product.pk review.pk comment.pk %}" method="POST">
+                      {% csrf_token %}
+                      {% if request.user in comment.like_users.all %}
+                          <input type="submit" value="좋아요 취소">
+                      {% else %}
+                          <input type="submit" value="좋아요">
+                      {% endif %}
+                    </form> {% endcomment %}
+                  </p>
+                  <span class="like-count">{{ comment.like_users.all.count }}</span>
+                  
                   <hr>
                   <!-- 댓글 -->
                   {% for comment in review.comment_set.all %}
@@ -144,7 +155,18 @@
 
                   <!-- 댓글내용 -->
                   <div class='comment-content' style="display: none;">
-                      {{ comment.content }} 
+
+                      <p>{{ comment.content }}</p>
+                      <p>
+                        <form action="{% url 'reviews:like_comment' product.pk review.pk comment.pk %}" method="POST">
+                          {% csrf_token %}
+                          {% if request.user in comment.like_users.all %}
+                              <input type="submit" value="좋아요 취소">
+                          {% else %}
+                              <input type="submit" value="좋아요">
+                          {% endif %}
+                      </form>
+                      </p>
                   </div>
                   
                   {% empty %} 
@@ -152,7 +174,7 @@
                       ⚠️ 댓글이 없습니다.
                   </div>
                   {% endfor %}
-      
+                  <hr>
                   <!-- 댓글 작성 폼 -->
                   <div class='comment-form' style="display: none;">
                       <form method="post" action="{% url 'reviews:comment_create' product_pk=product.pk review_pk=review.pk %}">
