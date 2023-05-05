@@ -3,8 +3,10 @@ from .models import Review, Comment
 from .forms import ReviewForm, CommentForm
 from products.models import Product
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.decorators import login_required
 
-# Create your views here.
+
+@login_required 
 def create_review(request, product_pk):
     product = Product.objects.get(pk = product_pk)
     form = ReviewForm(request.POST)
@@ -32,6 +34,7 @@ def rate_review(request, review_id):
     return redirect('review_detail', review_id)
 
 
+@login_required 
 def delete_review(request, product_pk, review_pk):
     review = Review.objects.get(pk=review_pk, product__pk=product_pk)
     if request.user == review.user:
@@ -39,6 +42,7 @@ def delete_review(request, product_pk, review_pk):
         return redirect('products:product_detail', product_pk=product_pk)
     
 
+@login_required 
 def update_review(request, product_pk, review_pk):
     review = Review.objects.get(pk=review_pk, product__pk=product_pk)
     if request.user == review.user:
@@ -49,6 +53,7 @@ def update_review(request, product_pk, review_pk):
                 return redirect('reviews:detail', product_pk=product_pk, review_pk=review.pk)
             
 
+@login_required 
 def comment_create(request, product_pk, review_pk):
     review = Review.objects.get(pk=review_pk)
     comment_form = CommentForm(request.POST)
@@ -64,7 +69,7 @@ def comment_create(request, product_pk, review_pk):
     }
     return render(request, 'products/product_detail.html', context)
 
-
+@login_required 
 def comment_delete(request, product_pk, review_pk, comment_pk):
     comment = Comment.objects.get(pk=comment_pk)
     if request.user == comment.user:
@@ -72,6 +77,7 @@ def comment_delete(request, product_pk, review_pk, comment_pk):
     return redirect('products:detail', product_pk=product_pk, review_pk=review_pk)
 
 
+@login_required 
 def like_review(request, product_pk, review_pk):
     review = Review.objects.get(pk=review_pk)
     if review.like_users.filter(pk=request.user.pk).exists():
@@ -100,6 +106,7 @@ def like_review(request, product_pk, review_pk):
 
 
 
+@login_required 
 def like_comment(request, product_pk, review_pk, comment_pk):
     comment = Comment.objects.get(pk=comment_pk)
     if comment.like_users.filter(pk=request.user.pk).exists():
