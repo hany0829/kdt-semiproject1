@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
-
+<!-- 가격표시 -->
+{% load humanize %}
 
 
 {% block content %}
@@ -43,7 +44,7 @@
         (수량):
         <span class="total">
           <strong class="total-em">
-            <em>780,000원</em>
+            <em>{{ product.price|intcomma }}원</em>
           </strong>
           (1개)
         </span>

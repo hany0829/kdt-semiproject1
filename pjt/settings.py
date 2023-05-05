@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'imagekit',
     'django_cleanup.apps.CleanupConfig',
+    'django.contrib.humanize',
     # 기본
     'django.contrib.admin',
     'django.contrib.auth',
