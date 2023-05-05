@@ -1,60 +1,60 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
 {% block content %}
-{% block style %}
-<style>
-.profile-box {
-  background-image: url('{% static 'image/user.png' %}');
-}
-</style>
-{% endblock style %}
-<link rel="stylesheet" href="{% static 'css/update.css' %}">
-<h1>회원정보수정</h1>
-    <div class="profile-container">
-        <div class="profile-box"></div>
-        {% if request.user.is_authenticated %}
-        <div class="profile-text">안녕하세요! <span>{{ user.username }}</span>님은 일반회원 입니다.</div>
-        {% endif %}
-    </div>
-    <div class="container">
-        <form id="update-form" action="{% url 'accounts:update' %}" method="POST">
+  {% block style %}
+    <style>
+      .profile-box {
+        background-image: url("{% static 'image/user.png' %}");
+      }
+    </style>
+  {% endblock style %}
+  <link rel="stylesheet" href="{% static 'css/update.css' %}">
+  <h1>회원정보수정</h1>
+  <div class="profile-container">
+    <div class="profile-box"></div>
+    {% if request.user.is_authenticated %}
+      <div class="profile-text">안녕하세요!
+        <span>{{ user.username }}</span>님은 일반회원 입니다.</div>
+    {% endif %}
+  </div>
+  <div class="container">
+    <form id="update-form" action="{% url 'accounts:update' %}" method="POST">
+      {% csrf_token %}
+      <div class="input-container">
+        <label for="username">아이디</label>
+        <input type="text" id="username" name="username" value="{{ user.username }}" required="required"class="all-input">
+      </div>
+
+      <div class="input-container">
+        <label for="first_name">이름</label>
+        <input type="text" id="first_name" name="first_name" value="{{user.first_name}}" required="required" class="all-input">
+      </div>
+
+      <div class="input-container">
+        <label for="email">이메일</label>
+        <input type="email" id="email" name="email" value="{{ user.email }}" required="required" class="all-input">
+      </div>
+    </form>
+
+    {% if request.user.is_authenticated %}
+      <div class="btn-group">
+        <button type="submit">수정완료</button> 
+        {% comment %} 한영님 이거 연결해주세요 {% endcomment %}
+        <button type="submit">
+          <a href="{% url 'accounts:change_password' %}">비밀번호변경</a>
+        </button>
+      </div>
+
+      <form id="delete-form" class="mt-3" action="{% url 'accounts:delete' %}" method="POST">
         {% csrf_token %}
-        <div class="input-container">
-            <label for="username">아이디</label>
-            <input type="text" id="username" name="username" value="{{ user.username }}" required>
-        </div>
+        <input type="submit" value="회원탈퇴" class="all-input">
+      </form>
 
-        <div class="input-container">
-            <label for="first_name">이름</label>
-            <input type="text" id="first_name" name="first_name" value="{{user.first_name}}" required>
-        </div>
-
-        <div class="input-container">
-            <label for="email">이메일</label>
-            <input type="email" id="email" name="email" value="{{ user.email }}" required>
-        </div>
-        </form>
-
-        {% if request.user.is_authenticated %}
-            <div class="btn-group">
-                <button type="submit">수정완료</button>
-                <button type="submit"><a href="{% url 'accounts:change_password' %}">비밀번호변경</a></button>
-            </div>
-            
-            
-            <form id="delete-form" action="{% url 'accounts:delete' %}" method="POST">
-                {% csrf_token %}
-                <input type="submit" value="회원탈퇴">
-            </form>
-
-            <form id="logout-form" action="{% url 'accounts:logout' %}" method="POST">
-                {% csrf_token %}
-                <input type="submit" value="Logout">
-            </form>
-        {% endif %}
-    </div>
+      <form id="logout-form" action="{% url 'accounts:logout' %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Logout" class="all-input">
+      </form>
+    {% endif %}
+  </div>
 {% endblock content %}
-
-
