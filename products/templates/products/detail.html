@@ -109,9 +109,11 @@
                 <form action="{% url 'reviews:like_review' product.pk review.pk %}" method="POST">
                   {% csrf_token %}
                   {% if request.user in review.like_users.all %}
-                    <input type="submit" value="좋아요 취소">
+                    {% comment %} <input type="submit" value="좋아요 취소"> {% endcomment %}
+                    <button type="submit"><svg style="color: red" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16"> <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z" fill="red"></path> </svg></button>
                   {% else %}
-                    <input type="submit" value="좋아요">
+                    {% comment %} <input type="submit" value="좋아요"> {% endcomment %}
+                    <button type="submit"><svg style="color: white" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16"> <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z" fill="white"></path> </svg></button>
                   {% endif %}
                 </form>
                 <span class="like-count">{{ review.like_users.all.count }}</span>
@@ -161,11 +163,16 @@
                         <form action="{% url 'reviews:like_comment' product.pk review.pk comment.pk %}" method="POST">
                           {% csrf_token %}
                           {% if request.user in comment.like_users.all %}
-                              <input type="submit" value="좋아요 취소">
+                              {% comment %} <input type="submit" value="좋아요 취소"> {% endcomment %}
+                              <button type="submit"><svg style="color: red" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16"> <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z" fill="red"></path> </svg></button>
                           {% else %}
-                              <input type="submit" value="좋아요">
+                              {% comment %} <input type="submit" value="좋아요"> {% endcomment %}
+                              <button type="submit"><svg style="color: white" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16"> <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z" fill="white"></path> </svg></button>
                           {% endif %}
                       </form>
+                      </p>
+                      <p>
+                        <span class="like-count">{{ comment.like_users.all.count }}</span>
                       </p>
                   </div>
                   
