@@ -2,6 +2,10 @@
 @import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
 @import url('https://fonts.googleapis.com/css2?family=Mynerve&family=Noto+Sans+KR:wght@900&display=swap');
 
+li {
+  list-style: none;
+}
+
 .header-logo img {
   width: 100px;
   height: 100px;
@@ -27,6 +31,10 @@
   width: 30px;
   height: 30px;
 }
+
+/* .header-gnb li {
+  list-style: none;
+} */
 
 .hamburger {
   display: inline-block;
