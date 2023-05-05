@@ -4,23 +4,22 @@ from .models import Product, Category
 from reviews.models import Review
 from reviews.forms import ReviewForm
 from django.db.models import Count
+from django.contrib import messages
 
 
 def init(request):
     return redirect('products:index')
-
-# 임시 인덱스(나중에는 좋아요 많은순 or 리뷰 많은 순으로 상품 대체할듯?)
 
 
 def index(request):
     # 베스트 프로덕트(리뷰순)
     products = Product.objects.annotate(
         review_count=Count("reviews")).order_by("-review_count")
-    print(products)
+
     context = {
         'products': products,
     }
-
+    messages.success(request, '을(를) 장바구니에 추가하였습니다.')
     return render(request, 'products/index.html', context)
 
 
