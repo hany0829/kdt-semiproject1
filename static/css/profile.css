@@ -1,0 +1,107 @@
+회원수정 * {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: white;
+  margin: 0;
+  padding: 0px;
+}
+
+.container {
+  width: 100%;
+  max-width: 500px;
+  margin: 10px auto;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.follow input {
+  width: 100%;
+  padding: 0px;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  flex: 3;
+}
+
+button:hover {
+  background-color: #6d6d6d;
+}
+
+.profile-container {
+  width: 50%;
+  height: 120px;
+  background-color: #f0f0f0;
+  border-radius: 3px;
+  margin-bottom: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex; /* 추가 */
+  align-items: center; /* 추가 */
+}
+
+.profile-box {
+  width: 90px;
+  height: 90px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  margin-left: 10px;
+  background-image: url("{% static "image/user.png" %}");
+  background-size: cover;
+  background-position: center;
+}
+
+.profile-text {
+  padding: 20px;
+  text-align: center;
+  color: black;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  justify-content: space-between;
+}
+
+label {
+  margin-right: 5px;
+  flex: 1;
+}
+
+.btn a {
+  text-decoration: none;
+  color: white;
+}
+
+/* Footer 재설정 */
+.footer_nav {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding-bottom: auto;
+}
+
+.button-margin {
+  margin-bottom: 10px;
+}
