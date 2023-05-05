@@ -4,7 +4,7 @@ from .models import Product, Category
 from reviews.models import Review
 from reviews.forms import ReviewForm
 from django.db.models import Count
-from django.contrib import messages
+from django.core.paginator import Paginator
 
 
 def init(request):
@@ -14,21 +14,26 @@ def init(request):
 def index(request):
     # 베스트 프로덕트(리뷰순)
     products = Product.objects.annotate(
-        review_count=Count("reviews")).order_by("-review_count")
+        review_count=Count("reviews")).order_by("-review_count")[0:8]
 
     context = {
         'products': products,
     }
-    messages.success(request, '을(를) 장바구니에 추가하였습니다.')
+
     return render(request, 'products/index.html', context)
 
 
 # 카테고리별 상품
 def category_products(request, category_name):
-    # 특정 카테고리의 상품들
     category = Category.objects.get(name=category_name)
-    products = Product.objects.filter(category=category)
-    order_param = request.GET.get('order', None)  # 파라미터 받아오기
+    products = Product.objects.filter(category=category).order_by('-pk')
+    products_num = products.count()
+    # 페이지
+    page = request.GET.get('page', '1')
+    paginator = Paginator(products, 16)  # 페이지당 16개씩 보여주기
+    products = paginator.get_page(page)
+    # 파라미터 받아오기
+    order_param = request.GET.get('order', None)
 
     # 정렬하기
     if order_param == 'latest':  # 최신순
@@ -44,6 +49,8 @@ def category_products(request, category_name):
     context = {
         'category': category_name,
         'products': products,
+        'order_param': order_param,
+        'products_num': products_num,
     }
 
     return render(request, 'products/category.html', context)

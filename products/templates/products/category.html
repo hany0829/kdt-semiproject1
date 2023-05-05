@@ -91,7 +91,7 @@
         <!--카테고리 분류 나열-->
         <div class="function">
           <p>등록제품:
-            <strong>{{products|length}}</strong>
+            <strong>{{products_num}}개</strong>
           </p>
           <div class="menu-wrapper">
             <ul class="desktop-menu">
@@ -144,5 +144,28 @@
         </div>
       </div>
     </div>
+    <div class="row" style="font-size: 1.2rem;
+    padding: 0.5rem;">
+      <div class="col-md-6 mx-auto text-center">
+        {% if products.has_previous %}
+        <a href="?page={{ products.previous_page_number }}{% if order_param %}&order={{ order_param }}{% endif %}">이전 페이지</a>
+        {% endif %}
+
+        {% for num in products.paginator.page_range %}
+          {% if num == products.number %}
+            <span class="current-page">{{ num }}</span>
+          {% else %}
+            <a href="?page={{ num }}{% if order_param %}&order={{ order_param }}{% endif %}">{{ num }}</a>
+          {% endif %}
+        {% endfor %}
+
+        {% if products.has_next %}
+        <a href="?page={{ products.next_page_number }}{% if order_param %}&order={{ order_param }}{% endif %}">다음 페이지</a>
+        {% endif %}
+      </div>
+      
+    </div>
+    
+
   </div>
 {% endblock content %}
