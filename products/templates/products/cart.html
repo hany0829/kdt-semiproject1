@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/cart.css' %}">
+
+<h5 class="cart-h5">장바구니</h5>
+
+<div class="d-flex justify-content-center">
+  <button class="btn btn-dark mx-1">배송상품</button>
+</div>
+  <div class="d-flex justify-content-center mt-3">장바구니에 담긴 상품은 7일 동안 보관 됩니다.</div>
+
+{% comment %} 상품 테이블 {% endcomment %}
+<div class="table-margin">
+  <div class="my-4">
+    <div class="cart-h3 h3">
+      <h3>일반상품()</h3>
+      <table class="table table-font">   
+        <thead class="table-secondary">
+          <tr>
+            <th scope="col">
+              <span>
+                <input type="checkbox" id="check-all">
+              </span>
+            </th>
+            <th scope="col">상품</th>
+            <th scope="col">수량</th>
+            <th scope="col">구매금액</th>
+            <th scope="col">배송비</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">
+                <input type="checkbox" id="check-item-1">
+            </th>
+            <td>img</td>
+            <td>
+              <input class="count-box" type="number" min="1" value="1" id="quantity">
+            </td>
+            <td>2만원</td>
+            <td>무료</td>
+          </tr>
+          <tr>
+            <th scope="row">
+              <input type="checkbox" id="check-item-2">
+            </th>
+            <td>img</td>
+            <td>
+              <input class="count-box" type="number" min="1" value="1" id="quantity">
+            </td>
+            <td>3만원</td>
+            <td>무료</td>
+          </tr>
+          <tr>
+            <th scope="row">
+              <input type="checkbox" id="check-item-3">
+            </th>
+            <td >img</td>
+            <td>
+              <input class="count-box" type="number" min="1" value="1" id="quantity">
+            </td>
+            <td>5만원</td>
+            <td>무료</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% comment %} 구매 테이블 {% endcomment %}
+
+  <table class="table table-font">   
+    <thead class="table-secondary">
+      <tr>
+        <th scope="col">
+        
+        </th>
+        <td scope="col">총 상품금액</td>
+        <td scope="col">총 배송비</td>
+        <td scope="col">결제예정금액</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">
+        </th>
+        <td>100만원</td>
+        <td>+0원</td>
+        <td>100만</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="mt-4">
+    <div class="button1">
+      <button class="btn btn-dark mx-1 ">전체상품 주문</button>
+      <button class="btn btn-secondary mx-1">선택상품 주문</button>
+        <button class="btn btn-dark mx-1 mr-auto button2"><a class="button2-a" href="{% url 'products:index'%}">쇼핑계속하기</a></button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<script>
+  // 전체 선택 체크박스 클릭 시 개별 선택 체크박스 모두 체크
+  document.getElementById("check-all").addEventListener("click", function() {
+    var checkboxes = document.querySelectorAll('input[id^="check-item"]');
+    for (var i = 0; i < checkboxes.length; i++) {
+      checkboxes[i].checked = this.checked;
+    }
+  });
+
+  // 개별 선택 체크박스 클릭 시 전체 선택 체크박스 체크 여부 결정
+  var checkboxes = document.querySelectorAll('input[id^="check-item"]');
+  for (var i = 0; i < checkboxes.length; i++) {
+    checkboxes[i].addEventListener("click", function() {
+      var allChecked = true;
+      for (var j = 0; j < checkboxes.length; j++) {
+        if (!checkboxes[j].checked) {
+          allChecked = false;
+          break;
+        }
+      }
+      document.getElementById("check-all").checked = allChecked;
+    });
+  }
+</script>
+{% endblock content %}

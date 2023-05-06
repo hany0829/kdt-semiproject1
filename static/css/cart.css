@@ -1,0 +1,52 @@
+/* 원래 base.html에 있던 css */
+@import url("https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css");
+@import url("https://fonts.googleapis.com/css2?family=Mynerve&family=Noto+Sans+KR:wght@900&display=swap");
+.cart-h5{
+  text-align: center;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.cart-h3 h3{
+  font-size:12px;
+  color: #353535;
+  height: 38px;
+  margin: 20px 0 0;
+  padding: 0 0 0 9px;
+  border: 1px solid #d7d5d5;
+  line-height: 38px;
+  background: #f6f6f6;
+  margin-bottom: 0;
+}
+
+.table-font {
+  font-size:14px ;
+  text-align: center;
+}
+
+.table-margin {
+  margin: 0 30px;
+}
+
+.count-box {
+  width: 40px;
+  height:25px;
+}
+
+.button1 {
+  text-align: center;
+}
+
+.button2 {
+  position: absolute;
+  right: 30px;
+  float: right;
+  text-align: right;
+  color: white;
+  text-decoration: none;
+}
+
+.button2-a {
+  color: white;
+  text-decoration: none;
+}

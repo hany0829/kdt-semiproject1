@@ -11,4 +11,5 @@ urlpatterns = [
     path('search/', views.search, name='search'),
     # 인덱스
     path('', views.index, name='index'),
+    path('cart/', views.cart, name='cart'),
 ]
