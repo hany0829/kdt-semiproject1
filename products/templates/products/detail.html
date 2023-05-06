@@ -53,8 +53,13 @@
       <div class="button d-flex justify-content-left">
         <button type="button" class="btn btn-dark btn-lg btn-margin"><a style="color: white;" href="#">바로
             구매하기</a></button>
-        <button type="button" class="btn btn-outline-secondary btn-lg"><a style="color: black;" href="#">장바구니
-            담기</a></button>
+        <form method="post" action="{% url 'products:add_to_cart' product.id %}">
+          {% csrf_token %}
+          <label for="quantity">수량:</label>
+          <input type="number" name="quantity" min="1">
+          <button type="submit" class="btn btn-outline-secondary btn-lg">장바구니 담기</button>
+        </form>
+        
       </div>
     </div>
   </div>

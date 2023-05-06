@@ -28,43 +28,34 @@
             <th scope="col">수량</th>
             <th scope="col">구매금액</th>
             <th scope="col">배송비</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
+          {% if cart_items %}
+          {% for cart_item in cart_items %}
           <tr>
             <th scope="row">
                 <input type="checkbox" id="check-item-1">
             </th>
-            <td>img</td>
+            <td>{{ cart_item.product.name }}</td>
             <td>
-              <input class="count-box" type="number" min="1" value="1" id="quantity">
+              {{ cart_item.quantity }}
             </td>
-            <td>2만원</td>
+            <td>{{ cart_item.product.price }}</td>
             <td>무료</td>
-          </tr>
-          <tr>
-            <th scope="row">
-              <input type="checkbox" id="check-item-2">
-            </th>
-            <td>img</td>
             <td>
-              <input class="count-box" type="number" min="1" value="1" id="quantity">
+                 <form action="{% url 'products:remove_from_cart' cart_item.product.id %}" method="post">
+                      {% csrf_token %}
+                      <button type="submit">삭제</button>
+                 </form>
             </td>
-            <td>3만원</td>
-            <td>무료</td>
           </tr>
-          <tr>
-            <th scope="row">
-              <input type="checkbox" id="check-item-3">
-            </th>
-            <td >img</td>
-            <td>
-              <input class="count-box" type="number" min="1" value="1" id="quantity">
-            </td>
-            <td>5만원</td>
-            <td>무료</td>
-          </tr>
+          {% endfor %}
         </tbody>
+        {% else %}
+        <p>장바구니에 담긴 상품이 없습니다.</p>
+        {% endif %}
       </table>
     </div>
   </div>
@@ -84,10 +75,11 @@
     <tbody>
       <tr>
         <th scope="row">
+        {{ cart_total }}
         </th>
-        <td>100만원</td>
+        <td>{{ cart_total }}</td>
         <td>+0원</td>
-        <td>100만</td>
+        <td>{{ cart_total }}</td>
       </tr>
     </tbody>
   </table>
@@ -131,3 +123,4 @@
   }
 </script>
 {% endblock content %}
+
