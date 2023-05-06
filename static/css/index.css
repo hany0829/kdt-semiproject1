@@ -1,8 +1,8 @@
-@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
-@import url('https://fonts.googleapis.com/css2?family=Mynerve&family=Noto+Sans+KR:wght@900&display=swap');
+@import url("https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css");
+@import url("https://fonts.googleapis.com/css2?family=Mynerve&family=Noto+Sans+KR:wght@900&display=swap");
 
 body {
-  font-family: 'nanumsquare';
+  font-family: "nanumsquare";
 }
 .banner_img {
   display: flex;
@@ -34,8 +34,8 @@ body {
   padding-left: 17px;
 }
 .bestproduct-font {
-  font-family: 'Mynerve', cursive;
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: "Mynerve", cursive;
+  font-family: "Noto Sans KR", sans-serif;
 }
 .product-imgsize {
   width: 300px;
@@ -55,7 +55,12 @@ a {
   padding-top: 6px;
   margin-bottom: 5px;
   font-size: 17px;
-} /* .product { display: grid; } */
+}
+
+/* .product {
+  display: grid;
+} */
+
 .best {
   border-bottom: 1px solid black;
   padding-top: 30px;

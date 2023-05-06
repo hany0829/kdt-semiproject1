@@ -8,9 +8,6 @@
 
 <h5 class="cart-h5">장바구니</h5>
 
-<div class="d-flex justify-content-center">
-  <button class="btn btn-dark mx-1">배송상품</button>
-</div>
   <div class="d-flex justify-content-center mt-3">장바구니에 담긴 상품은 7일 동안 보관 됩니다.</div>
 
 {% comment %} 상품 테이블 {% endcomment %}
@@ -47,10 +44,10 @@
             <td>{{ cart_item.product.price|intcomma }}원</td>
             <td>무료</td>
             <td>
-                 <form action="{% url 'products:remove_from_cart' cart_item.product.id %}" method="post">
+                <form action="{% url 'products:remove_from_cart' cart_item.product.id %}" method="post">
                       {% csrf_token %}
                       <button class="btn btn-danger" type="submit">삭제</button>
-                 </form>
+                </form>
             </td>
           </tr>
           {% endfor %}
@@ -88,15 +85,31 @@
 
   <div class="mt-4">
     <div class="button1">
-      <button class="btn btn-dark mx-1 ">전체상품 주문</button>
-      <button class="btn btn-secondary mx-1">선택상품 주문</button>
+      <button class="btn btn-dark mx-1" data-bs-toggle="modal" data-bs-target="#buy">전체상품 주문</button>
+      <button class="btn btn-secondary mx-1" data-bs-toggle="modal" data-bs-target="#buy">선택상품 주문</button>
         <button class="btn btn-dark mx-1 mr-auto button2"><a class="button2-a" href="{% url 'products:index'%}">쇼핑계속하기</a></button>
     </div>
   </div>
 </div>
 
 
-
+<div class="modal" id="buy" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">구매</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>구매해주셔서 감사합니다 ! 상품은 배송 안됩니다 ~ 🤪</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary"><a class="button2-a" href="{% url 'products:index'%}">쇼핑계속하기</a></button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
