@@ -3,9 +3,10 @@
 
 {% block content %}
   <link rel="stylesheet" href="{% static 'css/login_css.css' %}">
+  
   <div class="d-flex justify-content-center">
     <div class="login-container">
-      <h2>로그인</h2>
+      <h2 class="title">로그인</h2>
       <form action="{% url 'accounts:login' %}" id="login-form" method="POST">
         {% csrf_token %}
         {% if form.errors %}
@@ -25,12 +26,11 @@
       </form>
       <hr>
       <div class="footer-links">
-        <div>
           <div>
             <a href="{% url 'accounts:signup' %}">회원 가입</a>
           </div>
-        </div>
       </div>
     </div>
+  </div>
 
 {% endblock content %}

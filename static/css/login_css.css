@@ -1,4 +1,4 @@
-body {
+/* body {
   font-family: Arial, sans-serif;
   background-color: white;
   display: flex;
@@ -7,17 +7,17 @@ body {
   height: 100vh;
   margin: 0;
   text-align: center;
-}
+} */
 
-.login-container {
+/* .login-container {
   background-color: #ffffff;
   padding: 30px;
   border-radius: 5px;
   width: 350px;
   box-sizing: border-box;
-}
+} */
 
-h2 {
+/* .title h2 {
   text-align: center;
   margin: 0 0 30px;
 }
@@ -66,4 +66,8 @@ hr {
   display: flex;
   justify-content: space-evenly;
   text-align: center;
-}
+} */
+
+/* .test {
+  color: red;
+} */
