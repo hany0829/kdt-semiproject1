@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
+<!-- 가격표시 -->
+{% load humanize %}
 
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/cart.css' %}">
@@ -42,7 +44,7 @@
             <td>
               {{ cart_item.quantity }}
             </td>
-            <td>{{ cart_item.product.price }}</td>
+            <td>{{ cart_item.product.price|intcomma }}원</td>
             <td>무료</td>
             <td>
                  <form action="{% url 'products:remove_from_cart' cart_item.product.id %}" method="post">
@@ -75,11 +77,11 @@
     <tbody>
       <tr>
         <th scope="row">
-        {{ cart_total }}
+        {{ cart_total |intcomma}}원
         </th>
-        <td>{{ cart_total }}</td>
+        <td>{{ cart_total |intcomma}}원</td>
         <td>+0원</td>
-        <td>{{ cart_total }}</td>
+        <td>{{ cart_total |intcomma}}원</td>
       </tr>
     </tbody>
   </table>
