@@ -1,4 +1,85 @@
-회원수정 * {
+/* body {
+  font-family: 'Noto Sans KR', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f2f2f2;
+} */
+.profile-container {
+  display: flex;
+  width: 80%;
+  max-width: 1200px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+}
+.profile-card {
+  width: 350px;
+  text-align: center;
+  border: 1px solid #e5e5e5; /* 경계선  */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과  */
+  padding: 2rem 0rem;
+}
+.profile-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.profile-card h2 {
+  font-size: 24px;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+.profile-card h3 {
+  font-size: 16px;
+  color: gray;
+  margin-bottom: 20px;
+}
+.profile-card .follow-info {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 15px;
+}
+.follow-info span {
+  display: block;
+  text-align: center;
+}
+.follow-info span strong {
+  font-size: 18px;
+  display: block;
+}
+.follow-btn {
+  background-color: #282828;
+  border: none;
+  color: white;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.follow-btn:hover {
+    background-color: #6d6d6d;
+}
+.posts-area {
+  flex-grow: 1;
+  margin-left: 20px;
+
+}
+  
+  /* 게시판이 들어갈 빈 영역 */
+  /* border: 1px solid #e5e5e5; */
+
+
+
+/* 회원수정  */
+/*
+* {
   box-sizing: border-box;
 }
 
@@ -52,10 +133,10 @@ button:hover {
   margin-bottom: 15px;
   margin-left: auto;
   margin-right: auto;
-  display: flex; /* 추가 */
-  align-items: center; /* 추가 */
-}
-
+  display: flex; 
+  align-items: center; 추가
+} */
+ 
 .profile-box {
   width: 90px;
   height: 90px;
@@ -64,7 +145,7 @@ button:hover {
   align-items: center;
   margin-right: 20px;
   margin-left: 10px;
-  background-image: url("{% static "image/user.png" %}");
+  background-image: url("/static/image/user.png");
   background-size: cover;
   background-position: center;
 }
@@ -93,7 +174,7 @@ label {
 }
 
 /* Footer 재설정 */
-.footer_nav {
+/* .footer_nav {
   display: flex;
   justify-content: center;
   position: fixed;
@@ -104,4 +185,4 @@ label {
 
 .button-margin {
   margin-bottom: 10px;
-}
+} */

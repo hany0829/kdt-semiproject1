@@ -12,7 +12,30 @@
 {% block content %}
 
   <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+  <div class="profile-container">
+    <div class="profile-card">
+      <img src="{% static 'image/user.png' %}" alt="프로필 사진">
+      <h2>닉네임</h2>
+      <h3>이메일@example.com</h3>
+      <div class="follow-info">
+        <span>
+          <strong>123</strong>
+          팔로워
+        </span>
+        <span>
+          <strong>456</strong>
+          팔로잉
+        </span>
+      </div>
+      <button class="follow-btn">팔로우</button>
+    </div>
+    <div class="posts-area">
+        <!-- 이 곳에 게시물이 들어갈 예정입니다. -->
+      </div>
+    </div>
+    
   <h1>회원정보</h1>
+
   <div class="profile-container">
     <div class="profile-box"></div>
 
