@@ -56,7 +56,7 @@
         <form method="post" action="{% url 'products:add_to_cart' product.id %}">
           {% csrf_token %}
           <label for="quantity">수량:</label>
-          <input type="number" name="quantity" min="1">
+          <input type="number" name="quantity" value="1" min="1">
           <button type="submit" class="btn btn-outline-secondary btn-lg">장바구니 담기</button>
         </form>
         
