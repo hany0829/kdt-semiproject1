@@ -9,6 +9,7 @@ from django.http import JsonResponse
 from django.contrib import messages
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
+from reviews.models import Review
 
 def login(request):
     if request.method == 'POST':
@@ -94,8 +95,10 @@ def change_password(request):
 def profile(request, username):
     User = get_user_model()
     person = User.objects.get(username=username)
+    reviews = Review.objects.filter(user=person)
     context = {
-        'person': person
+        'person': person,
+        'reviews':reviews,
     }
     return render(request, 'accounts/profile.html', context)
 

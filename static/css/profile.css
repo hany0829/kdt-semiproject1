@@ -14,6 +14,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
   border-radius: 10px;
+  margin: 0 auto;
 }
 .profile-card {
   width: 350px;
@@ -51,7 +52,7 @@
   font-size: 18px;
   display: block;
 }
-.follow-btn {
+.black-btn {
   background-color: #282828;
   border: none;
   color: white;
@@ -63,14 +64,19 @@
   border-radius: 3px;
   cursor: pointer;
 }
-.follow-btn:hover {
+.black-btn:hover {
     background-color: #6d6d6d;
+}
+.black-btn a {
+  color: white;
+  text-decoration: none;
 }
 .posts-area {
   flex-grow: 1;
   margin-left: 20px;
 
 }
+
   
   /* 게시판이 들어갈 빈 영역 */
   /* border: 1px solid #e5e5e5; */
@@ -174,6 +180,7 @@ label {
 }
 
 /* Footer 재설정 */
+
 /* .footer_nav {
   display: flex;
   justify-content: center;

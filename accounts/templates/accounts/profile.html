@@ -15,66 +15,77 @@
   <div class="profile-container">
     <div class="profile-card">
       <img src="{% static 'image/user.png' %}" alt="프로필 사진">
-      <h2>닉네임</h2>
-      <h3>이메일@example.com</h3>
+      <h2>{{person.username}}</h2>
+      <h3>{{person.email}}</h3>
+
       <div class="follow-info">
-        <span>
-          <strong>123</strong>
+        <span id="followings-count">
+          <strong>{{ person.followers.all|length }}</strong>
           팔로워
         </span>
-        <span>
-          <strong>456</strong>
+        <span id="followers-count">
+          <strong>{{ person.followings.all|length }}</strong>
           팔로잉
         </span>
       </div>
-      <button class="follow-btn">팔로우</button>
-    </div>
-    <div class="posts-area">
-        <!-- 이 곳에 게시물이 들어갈 예정입니다. -->
-      </div>
-    </div>
-    
-  <h1>회원정보</h1>
-
-  <div class="profile-container">
-    <div class="profile-box"></div>
-
-    <div class="d-flex flex-column mb-3 mt-3">
-      <div class="profile-text">안녕하세요!
-        <span>{{ person.username }}</span>님은 일반회원 입니다.</div>
-
-      <div>
-        팔로잉 :
-        <span id="followings-count">{{ person.followings.all|length }}</span>
-        / 팔로워 :
-        <span id="followers-count">{{ person.followers.all|length }}</span>
-        {% if request.user != person %}
+      <div class="btn-group">
+      {% if request.user != person %}
           <form id="follow-form" data-user-id="{{ person.pk }}">
             {% csrf_token %}
             {% if request.user in person.followers.all %}
-              <input class="button-margin follow btn btn-danger btn-sm" type="submit" value="언팔로우">
+              <input class="button-margin follow btn black-btn btn-sm" type="submit" value="언팔로우">
             {% else %}
-              <input class="button-margin follow btn btn-danger btn-sm" type="submit" value="팔로우">
+              <input class="button-margin follow btn black-btn btn-sm" type="submit" value="팔로우">
             {% endif %}
           </form>
         {% endif %}
+      <!-- 유저 본인만 회원정보수정이 보이게-->
+      {% if request.user == person %}
+        <div class="d-flex justify-content-center">
+          <button class="black-btn">
+            <a href="{% url 'accounts:update' %}">회원정보수정</a>
+          </button>
+        </div>
+      {% endif %}
       </div>
     </div>
-
+    <div class="posts-area">
+      <div class="review-tabel">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">제목</th>
+              <th scope="col">작성일</th>
+              <th scope="col">별점</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for review in reviews %}
+            <tr class='review'>
+                <td>{{ review.title }}</td>
+                <td>{{ review.created_at}}</td>
+                <td>
+                  {% if review.rating == 1 %}
+                    ⭐☆☆☆☆
+                  {% elif review.rating == 2 %}
+                    ⭐⭐☆☆☆
+                  {% elif review.rating == 3 %}
+                    ⭐⭐⭐☆☆
+                  {% elif review.rating == 4 %}
+                    ⭐⭐⭐⭐☆
+                  {% elif review.rating == 5 %}
+                    ⭐⭐⭐⭐⭐
+                  {% else %}
+                    ☆☆☆☆☆
+                  {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>     
   </div>
-
-  <!-- 유저 본인만 회원정보수정이 보이게-->
-  {% if request.user == person %}
-    <div class="d-flex justify-content-center">
-      <button type="button" class="btn btn-dark">
-        <a href="">
-          <a href="{% url 'accounts:update' %}">회원정보수정</a>
-        </a>
-      </button>
-    </div>
-  {% endif %}
-
-</div>
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
@@ -111,8 +122,8 @@
         }
 
         // 팔로잉&팔로워 수 DOM 조작
-        const followingCountTag = document.querySelector('#followings-count')
-        const followerCountTag = document.querySelector('#followers-count')
+        const followingCountTag = document.querySelector('#followings-count strong')
+        const followerCountTag = document.querySelector('#followers-count strong')
 
         const followingsCountData = response.data.followings_count
         const followersCountData = response.data.followers_count
