@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
+<!-- 가격표시 -->
+{% load humanize %}
 
 {% block content %}
 
@@ -89,30 +91,32 @@
         <!--카테고리 분류 나열-->
         <div class="function">
           <p>등록제품:
-            <strong>{{products|length}}</strong>
+            <strong>{{products_num}}개</strong>
           </p>
           <div class="menu-wrapper">
             <ul class="desktop-menu">
               <li class="li-margin">
-                <a href="#">신상품</a>
+                <a href="{% url 'products:category_products' category_name=category %}?order=latest">최신순</a>
               </li>
               <li class="li-margin">
-                <a href="#">상품명</a>
+                <a href="{% url 'products:category_products' category_name=category %}?order=low_price">낮은가격</a>
               </li>
               <li class="li-margin">
-                <a href="#">낮은가격</a>
+                <a href="{% url 'products:category_products' category_name=category %}?order=high_price">높은가격</a>
               </li>
               <li class="li-margin">
-                <a href="#">높은가격</a>
+                <a href="{% url 'products:category_products' category_name=category %}?order=many_reviews">리뷰많은순</a>
               </li>
             </ul>
             <div class="mobile-menu">
-              <select>
-                <option value="#">신상품</option>
-                <option value="#">상품명</option>
-                <option value="#">낮은가격</option>
-                <option value="#">높은가격</option>
+              <form>
+              <select onchange="location = this.value;">
+                <option value="{% url 'products:category_products' category_name=category %}?order=latest">최신순</option>
+                <option value="{% url 'products:category_products' category_name=category %}?order=low_price">낮은가격</option>
+                <option value="{% url 'products:category_products' category_name=category %}?order=high_price">높은가격</option>
+                <option value="{% url 'products:category_products' category_name=category %}?order=many_reviews">리뷰많은순</option>
               </select>
+              </form>
             </div>
           </div>
         </div>
@@ -125,11 +129,11 @@
                   <a href="{% url 'products:product_detail' product.pk %}">
                     <img src="{{ product.image.url }}" alt="karimoku60" class="product-imgsize">
                     <br>
-                    <strong class="brandname">Karimoku60</strong>
+                    <strong class="brandname">{{product.brand}}</strong>
                     <br>
                     <strong>{{ product.name }}</strong>
                     <br>
-                    <strong class="price">{{ product.price }}원</strong>
+                    <strong class="price">{{ product.price|intcomma }}원</strong>
                     <br>
                     <img src="https://img.echosting.cafe24.com/design/skin/admin/ko_KR/ico_product_stock.gif" alt="재고보유">
                   </a>
@@ -140,5 +144,28 @@
         </div>
       </div>
     </div>
+    <div class="row" style="font-size: 1.2rem;
+    padding: 0.5rem;">
+      <div class="col-md-6 mx-auto text-center">
+        {% if products.has_previous %}
+        <a href="?page={{ products.previous_page_number }}{% if order_param %}&order={{ order_param }}{% endif %}">이전 페이지</a>
+        {% endif %}
+
+        {% for num in products.paginator.page_range %}
+          {% if num == products.number %}
+            <span class="current-page">{{ num }}</span>
+          {% else %}
+            <a href="?page={{ num }}{% if order_param %}&order={{ order_param }}{% endif %}">{{ num }}</a>
+          {% endif %}
+        {% endfor %}
+
+        {% if products.has_next %}
+        <a href="?page={{ products.next_page_number }}{% if order_param %}&order={{ order_param }}{% endif %}">다음 페이지</a>
+        {% endif %}
+      </div>
+      
+    </div>
+    
+
   </div>
 {% endblock content %}
