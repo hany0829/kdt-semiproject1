@@ -66,4 +66,7 @@ def search(request):
     }
 
     return render(request, 'products/search.html', context)
-    
+
+
+def cart(request):
+    return render(request, 'products/cart.html')
