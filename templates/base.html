@@ -16,7 +16,6 @@
   </head>
 
   <body>
-
     <div id="mySidenav" class="sidenav">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
       <a href="{% url 'products:category_products' 'Sofa' %}">ALL</a>
@@ -90,9 +89,6 @@
                   </li>
                   <li>
                     <a class="dropdown-item" href="{% url 'accounts:profile' user.username %}">MYPAGE</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#">REVIEW</a>
                   </li>
                 </ul>
               {% else %}
