@@ -49,7 +49,7 @@
             <td>
                  <form action="{% url 'products:remove_from_cart' cart_item.product.id %}" method="post">
                       {% csrf_token %}
-                      <button type="submit">삭제</button>
+                      <button class="btn btn-danger" type="submit">삭제</button>
                  </form>
             </td>
           </tr>

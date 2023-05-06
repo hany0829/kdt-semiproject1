@@ -9,7 +9,6 @@ urlpatterns = [
     path('<int:product_pk>/', views.product_detail, name='product_detail'),
     # 검색(쿼리스트링으로 받을꺼임)
     path('search/', views.search, name='search'),
-    # 인덱스
     path('', views.index, name='index'),
     path('add-to-cart/<int:product_id>/',
          views.add_to_cart, name='add_to_cart'),
