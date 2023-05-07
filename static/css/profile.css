@@ -77,72 +77,7 @@
 
 }
 
-  
-  /* 게시판이 들어갈 빈 영역 */
-  /* border: 1px solid #e5e5e5; */
 
-
-
-/* 회원수정  */
-/*
-* {
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: white;
-  margin: 0;
-  padding: 0px;
-}
-
-.container {
-  width: 100%;
-  max-width: 500px;
-  margin: 10px auto;
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 5px;
-}
-
-h1 {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.follow input {
-  width: 100%;
-  padding: 0px;
-  border: 1px solid #e5e5e5;
-  border-radius: 3px;
-  margin-bottom: 15px;
-  padding: 10px;
-  border: 1px solid #e5e5e5;
-  border-radius: 3px;
-  flex: 3;
-}
-
-button:hover {
-  background-color: #6d6d6d;
-}
-
-.profile-container {
-  width: 50%;
-  height: 120px;
-  background-color: #f0f0f0;
-  border-radius: 3px;
-  margin-bottom: 15px;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex; 
-  align-items: center; 추가
-} */
- 
 .profile-box {
   width: 90px;
   height: 90px;
@@ -178,6 +113,19 @@ label {
   text-decoration: none;
   color: white;
 }
+
+@media screen and (max-width: 768px) {
+  .profile-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .posts-area {
+    margin-left: 0;
+    margin-top: 20px;
+  }
+}
+
 
 /* Footer 재설정 */
 
