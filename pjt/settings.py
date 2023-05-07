@@ -29,7 +29,6 @@ INSTALLED_APPS = [
     'imagekit',
     'django_cleanup.apps.CleanupConfig',
     'django.contrib.humanize',
-    'debug_toolbar',
     # 기본
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,9 +39,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    # 디버그 툴바
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
-    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
