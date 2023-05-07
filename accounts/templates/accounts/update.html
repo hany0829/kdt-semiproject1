@@ -18,14 +18,14 @@
         <span>{{ user.username }}</span>님은 일반회원 입니다.</div>
     {% endif %}
   </div>
-  <div class="container">
+  <div class="update-container">
+    <div class="row justify-content-center">
     <form id="update-form" action="{% url 'accounts:update' %}" method="POST">
       {% csrf_token %}
       <div class="input-container">
         <label for="username">아이디</label>
         <input type="text" id="username" name="username" value="{{ user.username }}" required="required"class="all-input">
       </div>
-
       <div class="input-container">
         <label for="first_name">이름</label>
         <input type="text" id="first_name" name="first_name" value="{{user.first_name}}" required="required" class="all-input">
@@ -39,6 +39,7 @@
         <button type="submit">수정완료</button>
       </div>
     </form>
+  
 
     {% if request.user.is_authenticated %}
       <div class="btn-group">
@@ -56,6 +57,8 @@
         {% csrf_token %}
         <input type="submit" value="Logout" class="all-input">
       </form>
+
     {% endif %}
+    </div>
   </div>
 {% endblock content %}
