@@ -15,9 +15,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['port-0-kdt-semiproject1-687p2alhd43vo7.sel4.cloudtype.app']
 # Application definition
-# 'port-0-kdt-semiproject1-687p2alhd43vo7.sel4.cloudtype.app'
 INSTALLED_APPS = [
     # 로컬
     'accounts',
