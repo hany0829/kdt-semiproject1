@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
+<!-- 가격표시 -->
+{% load humanize %}
 
 {% block content %}
   {% comment %} <link rel="stylesheet" href="{% static 'css/styles.css' %}"> {% endcomment %}
@@ -14,50 +16,26 @@
           <p>등록제품:
             <strong>{{products|length}}</strong>
           </p>
-          <div class="menu-wrapper">
-            <ul class="desktop-menu">
-              <li class="li-margin">
-                <a href="#">신상품</a>
-              </li>
-              <li class="li-margin">
-                <a href="#">상품명</a>
-              </li>
-              <li class="li-margin">
-                <a href="#">낮은가격</a>
-              </li>
-              <li class="li-margin">
-                <a href="#">높은가격</a>
-              </li>
-            </ul>
-            <div class="mobile-menu">
-              <select>
-                <option value="#">신상품</option>
-                <option value="#">상품명</option>
-                <option value="#">낮은가격</option>
-                <option value="#">높은가격</option>
-              </select>
-            </div>
-          </div>
+          
         </div>
 
         <div class="product">
-          <ul class="prd-list">
+          <ul class="prd-list row">
             {% for product in products %}
-              <li class="row">
-                <div class="prd-item ">
-                  <a href="{% url 'products:product_detail' product.pk %}">
-                    <img src="{{ product.image.url }}" alt="karimoku60" class="product-imgsize">
-                    <br>
-                    <strong class="brandname">Karimoku60</strong>
-                    <br>
-                    <strong>{{ product.name }}</strong>
-                    <br>
-                    <strong class="price">{{ product.price }}원</strong>
-                    <br>
-                    <img src="https://img.echosting.cafe24.com/design/skin/admin/ko_KR/ico_product_stock.gif" alt="재고보유">
-                  </a>
-                </div>
-              </li>
+              <div class="product-item" style="flex-basis: calc(25% - 20px);
+              padding: 10px;
+              margin: 10px;
+              box-sizing: border-box;
+              text-align: center;
+              background-color: #f8f8f8;
+              border-radius: 5px;">
+                <a href="{% url 'products:product_detail' product.pk %}">
+                  <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+                  <h3 class="product-title">{{ product.name }}</h3>
+                  <p class="product-brand">{{ product.brand }}</p>
+                  <p class="product-price">{{ product.price|intcomma }}원</p>
+                </a>
+              </div>
             {% empty %}
             <h2 class="mt-3">해당하는 상품이 없습니다.</h2>
             {% endfor %}
