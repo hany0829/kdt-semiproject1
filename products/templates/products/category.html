@@ -110,62 +110,61 @@
             </ul>
             <div class="mobile-menu">
               <form>
-              <select onchange="location = this.value;">
-                <option value="{% url 'products:category_products' category_name=category %}?order=latest">최신순</option>
-                <option value="{% url 'products:category_products' category_name=category %}?order=low_price">낮은가격</option>
-                <option value="{% url 'products:category_products' category_name=category %}?order=high_price">높은가격</option>
-                <option value="{% url 'products:category_products' category_name=category %}?order=many_reviews">리뷰많은순</option>
-              </select>
+                <select onchange="location = this.value;">
+                  <option value="{% url 'products:category_products' category_name=category %}?order=latest">최신순</option>
+                  <option value="{% url 'products:category_products' category_name=category %}?order=low_price">낮은가격</option>
+                  <option value="{% url 'products:category_products' category_name=category %}?order=high_price">높은가격</option>
+                  <option value="{% url 'products:category_products' category_name=category %}?order=many_reviews">리뷰많은순</option>
+                </select>
               </form>
             </div>
           </div>
         </div>
         <!--제품 나열-->
-        <div class="product">
-          <ul class="prd-list">
+        <div class="product" style="display:block;">
+          <div style="display: flex;
+          flex-wrap: wrap;
+          margin: -10px;" class="product-list row">
             {% for product in products %}
-              <li class="row">
-                <div class="prd-item ">
-                  <a href="{% url 'products:product_detail' product.pk %}">
-                    <img src="{{ product.image.url }}" alt="karimoku60" class="product-imgsize">
-                    <br>
-                    <strong class="brandname">{{product.brand}}</strong>
-                    <br>
-                    <strong>{{ product.name }}</strong>
-                    <br>
-                    <strong class="price">{{ product.price|intcomma }}원</strong>
-                    <br>
-                    <img src="https://img.echosting.cafe24.com/design/skin/admin/ko_KR/ico_product_stock.gif" alt="재고보유">
-                  </a>
-                </div>
-              </li>
+              <div class="product-item" style="flex-basis: calc(25% - 20px);
+              padding: 10px;
+              margin: 10px;
+              box-sizing: border-box;
+              text-align: center;
+              background-color: #f8f8f8;
+              border-radius: 5px;">
+                <a href="{% url 'products:product_detail' product.pk %}">
+                  <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+                  <h3 class="product-title">{{ product.name }}</h3>
+                  <p class="product-brand">{{ product.brand }}</p>
+                  <p class="product-price">{{ product.price|intcomma }}원</p>
+                </a>
+              </div>
             {% endfor %}
-          </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 페이지네이션 -->
+      <div class="row" style="font-size: 1.2rem;padding: 0.5rem;">
+        <div class="col-md-6 mx-auto text-center">
+          {% if products.has_previous %}
+            <a href="?page={{ products.previous_page_number }}{% if order_param %}&order={{ order_param }}{% endif %}">이전 페이지</a>
+          {% endif %}
+
+          {% for num in products.paginator.page_range %}
+            {% if num == products.number %}
+              <span class="current-page">{{ num }}</span>
+            {% else %}
+              <a href="?page={{ num }}{% if order_param %}&order={{ order_param }}{% endif %}">{{ num }}</a>
+            {% endif %}
+          {% endfor %}
+
+          {% if products.has_next %}
+            <a href="?page={{ products.next_page_number }}{% if order_param %}&order={{ order_param }}{% endif %}">다음 페이지</a>
+          {% endif %}
         </div>
       </div>
     </div>
-    <div class="row" style="font-size: 1.2rem;
-    padding: 0.5rem;">
-      <div class="col-md-6 mx-auto text-center">
-        {% if products.has_previous %}
-        <a href="?page={{ products.previous_page_number }}{% if order_param %}&order={{ order_param }}{% endif %}">이전 페이지</a>
-        {% endif %}
-
-        {% for num in products.paginator.page_range %}
-          {% if num == products.number %}
-            <span class="current-page">{{ num }}</span>
-          {% else %}
-            <a href="?page={{ num }}{% if order_param %}&order={{ order_param }}{% endif %}">{{ num }}</a>
-          {% endif %}
-        {% endfor %}
-
-        {% if products.has_next %}
-        <a href="?page={{ products.next_page_number }}{% if order_param %}&order={{ order_param }}{% endif %}">다음 페이지</a>
-        {% endif %}
-      </div>
-      
-    </div>
-    
-
   </div>
 {% endblock content %}

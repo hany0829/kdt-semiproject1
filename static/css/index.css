@@ -33,6 +33,22 @@ body {
 .cont-box3 {
   padding-left: 17px;
 }
+
+.li-slice {
+  width: 25%;
+  float: left;
+  box-sizing: border-box;
+  flex-basis: calc(33.33% - 20px);
+  box-sizing: border-box;
+  margin-right: 20px;
+  padding: 10px;
+}
+
+.li-slice:last-child {
+  margin-right: 0;
+}
+
+/* 베스트 프로덕트 */
 .bestproduct-font {
   font-family: "Mynerve", cursive;
   font-family: "Noto Sans KR", sans-serif;
@@ -65,18 +81,17 @@ a {
   border-bottom: 1px solid black;
   padding-top: 30px;
 }
+/* 
 .prd-item {
   padding: 20px;
-}
+} */
 
 ul {
   list-style: none;
-  padding-left: 0px;
+  /* padding-left: 0px; */
 }
 
-.li-slice {
-  float: left;
-}
+/* 인스타 css */
 
 .viewmore {
   background-color: black;
@@ -88,37 +103,14 @@ ul {
   letter-spacing: 1px;
   margin-bottom: 4px;
 }
+
 .title {
   padding-top: 90px;
   margin-bottom: 72px;
   bottom: 10px;
   border-bottom: 1px solid black;
 }
-.bord {
-  margin-bottom: 100px;
-}
-.review-box {
-  /* width: 180px; height: 263px; */
-  margin-left: 12px;
-  margin-bottom: 12px;
-  border: 1px solid rgb(221, 221, 218);
-  overflow: hidden;
-}
-.review-img {
-  /* width: 200px; height: 200px; */
-  max-width: 100%; /* width: 176px; height: 176px; */
-  border-bottom: 1px solid rgb(221, 221, 218);
-}
-.review-inform {
-  padding: 19px 14px;
-  display: block;
-}
-.reviewall {
-  display: flex;
-}
-.review-font {
-  font-size: 13px;
-}
+
 .insta-img {
   width: 300px;
   height: 300px;
@@ -135,4 +127,52 @@ ul {
 .insta-align li {
   margin: 3px;
   flex-grow: 1;
+}
+
+/* chatgpt꺼 */
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -10px; /* Negative margin to counteract product-item margin */
+}
+
+.product-item {
+  flex-basis: calc(25% - 20px);
+  padding: 10px;
+  margin: 10px;
+  box-sizing: border-box;
+  text-align: center;
+  background-color: #f8f8f8;
+  border-radius: 5px;
+}
+
+.product-item a {
+  text-decoration: none;
+  color: #333;
+}
+
+.product-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.product-title {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.product-brand {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 5px;
+}
+
+.product-price {
+  font-size: 16px;
+  font-weight: bold;
 }
