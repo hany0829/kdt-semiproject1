@@ -16,128 +16,124 @@
   </head>
 
   <body>
-    <div id="mySidenav" class="sidenav">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <a href="{% url 'products:category_products' 'Sofa' %}">ALL</a>
-      <a href="{% url 'products:category_products' 'Sofa' %}">Sofa</a>
-      <a href="{% url 'products:category_products' 'Chair' %}">Chair</a>
-      <a href="{% url 'products:category_products' 'Tables' %}">Tables</a>
-      <a href="#">Acc.</a>
-    </div>
-    <div id="header">
-      <div class="header-wrap d-flex flex-column mt-5">
-        <div class="d-flex justify-content-between align-items-center">
-          <div class='header-logo'>
-            <!-- 로고 -->
-            <span class="first-logo">
-              <a href="{% url 'products:index' %}">
-                <img src="{% static 'img/creamshasha.png' %}" alt="logo(big)">
-              </a>
-            </span>
-          </div>
-
-          <!-- 정보 -->
-          <div class="header-gnb d-flex">
-
-            <!-- 유저이름 -->
-            <div>
-              {% if request.user.is_authenticated %}
-                <li>
-                  <span class='m-0'>
-                    Welcome
-                    {{ user }}님 !
-                  </span>
-                </li>
-              {% else %}
-                <li>
-                  <span class='m-0'>
-                    <a style="text-decoration:none;" href="{% url 'accounts:signup' %}">Join Us</a> 
-                  </span>
+    <div class="container">
+      <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="{% url 'products:category_products' 'Sofa' %}">ALL</a>
+        <a href="{% url 'products:category_products' 'Sofa' %}">Sofa</a>
+        <a href="{% url 'products:category_products' 'Chair' %}">Chair</a>
+        <a href="{% url 'products:category_products' 'Tables' %}">Tables</a>
+        <a href="#">Acc.</a>
+      </div>
+      <div id="header">
+        <div class="header-wrap d-flex flex-column mt-5">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class='header-logo'>
+              <!-- 로고 -->
+              <span class="first-logo">
+                <a href="{% url 'products:index' %}">
+                  <img src="{% static 'img/creamshasha.png' %}" alt="logo(big)">
+                </a>
+              </span>
+            </div>
+  
+            <!-- 정보 -->
+            <div class="header-gnb d-flex">
+  
+              <!-- 유저이름 -->
+              <div>
+                {% if request.user.is_authenticated %}
+                  <li>
+                    <span class='m-0'>
+                      Welcome
+                      {{ user }}님 !
+                    </span>
+                  </li>
+                {% else %}
+                  <li>
+                    <span class='m-0'>
+                      <a style="text-decoration:none;" href="{% url 'accounts:signup' %}">Join Us</a> 
+                    </span>
+                  </li>
+                {% endif %}
+              </div>
+  
+              <!-- 검색창 -->
+              <li id="" search="search">
+                <div>
+                  <form id="searchForm" method="GET" action="{% url 'products:search' %}">
+                    {% csrf_token %}
+                    <input type="text" class="search-input d-none d-lg-inline" name="searched">
+                    <button style="border: none;
+                    outline: none;
+                    background-color: transparent;
+                    padding: 0;
+                    cursor: pointer;" type="submit">
+                      <span class="li_img">
+                        <img src="https://www.remod.co.kr/onimg/ico_search@3x.png" alt="search">
+                      </span>
+                    </button>
+  
+                  </form>
+                </div>
+  
+              </li>
+              <!--내 정보/ 로그인/ 회원가입-->
+              <li class="nav-item dropdown">
+                <a href="#" class="nav-link" id="profileDropdown" role="button">
+                  <img src="https://www.remod.co.kr/onimg/ico_user@3x.png" alt="myshop">
+                </a>
+                {% if request.user.is_authenticated %}
+                  <ul style="background-color: rgba(54, 57, 63, 0.5);" class="dropdown-menu" aria-labelledby="profileDropdown">
+                    <li>
+                      <a class="dropdown-item" href="{% url 'accounts:logout' %}">LOGOUT</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="{% url 'accounts:profile' user.username %}">MYPAGE</a>
+                    </li>
+                  </ul>
+                {% else %}
+                  <ul style="background-color: rgba(54, 57, 63, 0.5);" class="dropdown-menu" aria-labelledby="profileDropdown">
+                    <li>
+                      <a class="dropdown-item" href="{% url 'accounts:login' %}">LOGIN</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="{% url 'accounts:signup' %}">JOIN</a>
+                    </li>
+                  </ul>
                 </li>
               {% endif %}
-            </div>
-
-            <!-- 검색창 -->
-            <li id="" search="search">
-              <div>
-                <form id="searchForm" method="GET" action="{% url 'products:search' %}">
-                  {% csrf_token %}
-                  <input type="text" class="search-input d-none d-lg-inline" name="searched">
-                  <button style="border: none;
-                  outline: none;
-                  background-color: transparent;
-                  padding: 0;
-                  cursor: pointer;" type="submit">
-                    <span class="li_img">
-                      <img src="https://www.remod.co.kr/onimg/ico_search@3x.png" alt="search">
-                    </span>
-                  </button>
-
-                </form>
-              </div>
-
-            </li>
-            <!--내 정보/ 로그인/ 회원가입-->
-            <li class="nav-item dropdown">
-              <a href="#" class="nav-link" id="profileDropdown" role="button">
-                <img src="https://www.remod.co.kr/onimg/ico_user@3x.png" alt="myshop">
-              </a>
-              {% if request.user.is_authenticated %}
-                <ul style="background-color: rgba(54, 57, 63, 0.5);" class="dropdown-menu" aria-labelledby="profileDropdown">
-                  <li>
-                    <a class="dropdown-item" href="{% url 'accounts:logout' %}">LOGOUT</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="{% url 'accounts:profile' user.username %}">MYPAGE</a>
-                  </li>
-                </ul>
-              {% else %}
-                <ul style="background-color: rgba(54, 57, 63, 0.5);" class="dropdown-menu" aria-labelledby="profileDropdown">
-                  <li>
-                    <a class="dropdown-item" href="{% url 'accounts:login' %}">LOGIN</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="{% url 'accounts:signup' %}">JOIN</a>
-                  </li>
-                </ul>
+              <li>
+                <a href="{% url 'products:view_cart' %}">
+                  <img src="https://www.remod.co.kr/onimg/ico_cart@3x.png" alt="basket"></a>
               </li>
-            {% endif %}
-            <li>
-              <a href="{% url 'products:view_cart' %}">
-                <img src="https://www.remod.co.kr/onimg/ico_cart@3x.png" alt="basket"></a>
-            </li>
-            <!-- 햄버거 버튼 -->
-            <div class="hamburger d-lg-none" onclick="openNav()">
-              <span></span>
-              <span></span>
-              <span></span>
+              <!-- 햄버거 버튼 -->
+              <div class="hamburger d-lg-none" onclick="openNav()">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
             </div>
           </div>
-        </div>
-
-        <!-- 네비게이션 바 -->
-        <div class="header-nav d-none d-sm-flex mt-4">
-          <div class="nav-link">
-            <a href="{% url 'products:category_products' 'Sofa' %}">Sofa</a>
-            {% comment %} <div class="nav-dropdown">
-              <a href="" class="nav-dropdown-item">1인소파</a>
-              <a href="" class="nav-dropdown-item">2인소파</a>
-              <a href="" class="nav-dropdown-item">3인소파</a>
-            </div> {% endcomment %}
+  
+          <!-- 네비게이션 바 -->
+          <div class="header-nav d-none d-sm-flex mt-4">
+            <div class="nav-link">
+              <a href="{% url 'products:category_products' 'Sofa' %}">Sofa</a>
+              
+            </div>
+            <div class="nav-link">
+              <a href="{% url 'products:category_products' 'Chair' %}">Chair</a>
+              
+            </div>
+            <a href="{% url 'products:category_products' 'Tables' %}" class="nav-link">Tables</a>
+            <div class="dropdown-menu"></div>
+            <a href="" class="nav-link">Acc.</a>
           </div>
-          <div class="nav-link">
-            <a href="{% url 'products:category_products' 'Chair' %}">Chair</a>
-            {% comment %} <div class="nav-dropdown">
-              <a href="" class="nav-dropdown-item">1</a>
-              <a href="" class="nav-dropdown-item">Product2</a>
-            </div> {% endcomment %}
-          </div>
-          <a href="{% url 'products:category_products' 'Tables' %}" class="nav-link">Tables</a>
-          <div class="dropdown-menu"></div>
-          <a href="" class="nav-link">Acc.</a>
         </div>
       </div>
     </div>
+    
 
     {% block content %}{% endblock content %}
 

@@ -25,30 +25,29 @@
     <div class="carousel-1" data-carousel-1-autoplay-status="Y">
       <div class="owl-carousel owl-theme">
         <div class="item">
-          <img src="{% static 'img/carousel_img/p1.png' %}">
+          <img src="{% static 'img/carousel_img/p1.png' %}" data-src-desktop="{% static 'img/carousel_img/p1.png' %}" data-src-mobile="{% static 'img/carousel_img/m1.png' %}">
         </div>
         <div class="item">
-          <img src="{% static 'img/carousel_img/p2.png' %}">
+          <img src="{% static 'img/carousel_img/p2.png' %}" data-src-mobile="{% static 'img/carousel_img/m2.png' %}" data-src-desktop="{% static 'img/carousel_img/p2.png' %}">
         </div>
         <div class="item">
-          <img src="{% static 'img/carousel_img/p3.png' %}">
+          <img src="{% static 'img/carousel_img/p3.png' %}" data-src-mobile="{% static 'img/carousel_img/m3.png' %}" data-src-desktop="{% static 'img/carousel_img/p3.png' %}">
         </div>
         <div class="item">
-          <img src="{% static 'img/carousel_img/p4.png' %}">
+          <img src="{% static 'img/carousel_img/p4.png' %}" data-src-mobile="{% static 'img/carousel_img/m4.png' %}" data-src-desktop="{% static 'img/carousel_img/p4.png' %}">
         </div>
         <div class="item">
-          <img src="{% static 'img/carousel_img/p5.png' %}">
+          <img src="{% static 'img/carousel_img/p5.png' %}" data-src-mobile="{% static 'img/carousel_img/m5.png' %}" data-src-desktop="{% static 'img/carousel_img/p5.png' %}">
         </div>
         <div class="item">
-          <img src="{% static 'img/carousel_img/p6.png' %}">
+          <img src="{% static 'img/carousel_img/p6.png' %}" data-src-mobile="{% static 'img/carousel_img/m6.png' %}" data-src-desktop="{% static 'img/carousel_img/p6.png' %}">
         </div>
       </div>
     </div>
     <div class="main-inner">
-      <div class="banner-area d-flex row">
-        <ul>
-          <li class='li-slice'>
-            <div class="cont-box1">
+      <div class="banner-area">
+      
+            <div class="col-12 col-sm-6 col-lg-4">
               <img src=" https://www.remod.co.kr/web/test/main_banner05.png" alt="casestudy" class="bannerimg-size"/>
               <div class="banner-info">
                 <p class="banner-font pt-4 h5">Karimoku CASE STUDY</p>
@@ -59,9 +58,8 @@
                 </p>
               </div>
             </div>
-          </li>
-          <li class='li-slice'>
-            <div class="cont-box2">
+
+            <div class="col-12 col-sm-6 col-lg-4">
               <img src="http://remod.co.kr/web/test/main_banner08.png" alt="760" class="bannerimg-size"/>
               <div class="banner-info">
                 <p class="banner-font pt-4 h5">Karimoku 60</p>
@@ -72,9 +70,8 @@
                 </p>
               </div>
             </div>
-          </li>
-          <li class='li-slice'>
-            <div class="cont-box3">
+          
+            <div class="col-12 col-sm-6 col-lg-4">
               <img src="http://remod.co.kr/web/test/main_banner07.png" alt="karimoku" class="bannerimg-size"/>
               <div class="banner-info">
                 <p class="banner-font pt-4 h5">Karimoku New Standard</p>
@@ -85,8 +82,8 @@
                 </p>
               </div>
             </div>
-          </li>
-        </ul>
+          <!-- </li>
+        </ul> -->
       </div>
     </div>
     {% if messages %}
@@ -182,4 +179,6 @@
       </div>
     </div>
   </div>
+  </div>
+    
 {% endblock content %}

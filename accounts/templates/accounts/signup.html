@@ -18,14 +18,14 @@
         padding: 0;
       }
 
-      .container {
+      {% comment %} .container {
         width: 100%;
         max-width: 400px;
         margin: 50px auto;
         background-color: #ffffff;
         padding: 20px;
         border-radius: 5px;
-      }
+      } {% endcomment %}
 
       h1 {
         text-align: center;
@@ -57,12 +57,13 @@
 
   <div class="container">
     <h1>회원가입</h1>
-    <form action="{% url 'accounts:signup' %}" id="SignupForm" method="POST">
-      {% csrf_token %}
-      {{ form.as_p }}
-
-      <button type="submit" class="btn btn-dark signup-btn">회원가입</button>
-    </form>
+    <div class="row justify-content-center">
+      <form style="width:100%; max-width: 400px;" action="{% url 'accounts:signup' %}" id="SignupForm" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-dark signup-btn">회원가입</button>
+      </form>
+    </div>
   </div>
 {% endblock content %}
 

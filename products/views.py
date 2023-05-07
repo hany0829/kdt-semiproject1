@@ -27,7 +27,7 @@ def index(request):
 # 카테고리별 상품
 def category_products(request, category_name):
     category = Category.objects.get(name=category_name)
-    products = Product.objects.filter(category=category).order_by('-pk')
+    products = Product.objects.select_related('category').filter(category=category).order_by('-pk')
     products_num = products.count()
     # 페이지
     page = request.GET.get('page', '1')
@@ -45,7 +45,7 @@ def category_products(request, category_name):
         products = products.order_by('-price')
 
     elif order_param == 'many_reviews':  # 리뷰 많은 순
-        products = Product.objects.annotate(
+        products = Product.objects.prefetch_related('reviews').annotate(
             review_count=Count("reviews")).order_by("-review_count")
 
     paginator = Paginator(products, 16)  # 페이지당 16개씩 보여주기
@@ -66,14 +66,17 @@ def product_detail(request, product_pk):
     # 특정상품 조회
     product = Product.objects.get(pk=product_pk)
     form = ReviewForm()
-    reviews = Review.objects.filter(product=product)
-    # comments = reviews.comment_set.all()
+    reviews = Review.objects.select_related('user').prefetch_related(
+                                            'comment_set',
+                                            'comment_set__user',
+                                            'comment_set__like_users'
+                                            ).filter(product=product)
+    
 
     context = {
         'product': product,
         'form': form,
         'reviews': reviews,
-        # 'comments':comments,
     }
 
     return render(request, 'products/detail.html', context)

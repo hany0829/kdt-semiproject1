@@ -1,0 +1,141 @@
+[
+{
+    "model": "reviews.review",
+    "pk": 1,
+    "fields": {
+        "user": 2,
+        "product": 40,
+        "title": "리뷰작성",
+        "content": "내용작성",
+        "created_at": "2023-05-07T10:02:15.945Z",
+        "rating": 4,
+        "like_users": [
+            2,
+            5
+        ]
+    }
+},
+{
+    "model": "reviews.review",
+    "pk": 2,
+    "fields": {
+        "user": 1,
+        "product": 40,
+        "title": "영통동 로켓펀치 그게 나",
+        "content": "ㅇㅋ?",
+        "created_at": "2023-05-07T10:02:21.289Z",
+        "rating": 1,
+        "like_users": [
+            2
+        ]
+    }
+},
+{
+    "model": "reviews.review",
+    "pk": 3,
+    "fields": {
+        "user": 3,
+        "product": 40,
+        "title": "이건 광고입니다",
+        "content": "이건 광고입니다이건 광고입니다이건 광고입니다이건 광고입니다이건 광고입니다이건 광고입니다이건 광고입니다이건 광고입니다이건 광고입니다이건 광고입니다이건 광고입니다이건 광고입니다이건 광고입니다이건 광고입니다이건 광고입니다이건 광고입니다이건 광고입니다이건 광고입니다이건 광고입니다이건 광고입니다이건 광고입니다이건 광고입니다이건 광고입니다이건 광고입니다이건 광고입니다이건 광고입니다이건 광고입니다",
+        "created_at": "2023-05-07T10:06:24.513Z",
+        "rating": 5,
+        "like_users": []
+    }
+},
+{
+    "model": "reviews.review",
+    "pk": 4,
+    "fields": {
+        "user": 3,
+        "product": 54,
+        "title": "이런건 대체 어디서 써요 ?",
+        "content": "어디서 써요 ?",
+        "created_at": "2023-05-07T10:09:05.360Z",
+        "rating": 1,
+        "like_users": []
+    }
+},
+{
+    "model": "reviews.review",
+    "pk": 5,
+    "fields": {
+        "user": 3,
+        "product": 53,
+        "title": "이게 책상이에요 ?",
+        "content": "이런게 책상 ???",
+        "created_at": "2023-05-07T10:09:28.503Z",
+        "rating": 1,
+        "like_users": []
+    }
+},
+{
+    "model": "reviews.review",
+    "pk": 6,
+    "fields": {
+        "user": 3,
+        "product": 15,
+        "title": "사장님 의자다",
+        "content": "사장님 의자 멋지다 ~ 연진아 ~",
+        "created_at": "2023-05-07T10:10:29.991Z",
+        "rating": 5,
+        "like_users": []
+    }
+},
+{
+    "model": "reviews.review",
+    "pk": 7,
+    "fields": {
+        "user": 3,
+        "product": 30,
+        "title": "카페책상",
+        "content": "너무 높잖아요",
+        "created_at": "2023-05-07T10:11:12.043Z",
+        "rating": 1,
+        "like_users": []
+    }
+},
+{
+    "model": "reviews.review",
+    "pk": 8,
+    "fields": {
+        "user": 3,
+        "product": 19,
+        "title": "레게노",
+        "content": "레게노 비싸",
+        "created_at": "2023-05-07T10:11:28.696Z",
+        "rating": 3,
+        "like_users": [
+            2
+        ]
+    }
+},
+{
+    "model": "reviews.review",
+    "pk": 9,
+    "fields": {
+        "user": 3,
+        "product": 35,
+        "title": "지브리 감성",
+        "content": "지브리에 나올것만 같아요 !",
+        "created_at": "2023-05-07T10:11:52.243Z",
+        "rating": 5,
+        "like_users": []
+    }
+},
+{
+    "model": "reviews.review",
+    "pk": 10,
+    "fields": {
+        "user": 3,
+        "product": 24,
+        "title": "우왕 너무 예쁜 그린",
+        "content": "우왕왕",
+        "created_at": "2023-05-07T10:12:15.023Z",
+        "rating": 5,
+        "like_users": [
+            2
+        ]
+    }
+}
+]

@@ -8,11 +8,14 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 364px;
 }
+
 .bannerimg-size {
-  width: auto;
+  width: 364px;
   height: 414px;
 }
+
 .banner-font {
   font-weight: normal;
   text-align: center;
@@ -22,9 +25,14 @@ body {
 }
 .banner-area {
   padding-bottom: 70px;
+
+}
+.banner-area div {
+  padding: 0 5px;
 }
 .cont-box1 {
   padding-right: 17px;
+  margin-left: 20px;
 }
 .cont-box2 {
   padding-left: 8px;
@@ -34,8 +42,29 @@ body {
   padding-left: 17px;
 }
 
+/*  */
+
+.banner-area {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* flex-wrap: nowrap; */
+  flex-wrap: wrap;
+}
+/*  
+ .li-slice {
+  margin: 0 10px;
+}
+*/
+.bannerimg-size {
+  width: 100%;
+  height: auto;
+} 
+
+/* 
+
 .li-slice {
-  width: 25%;
+  width: 30%;
   float: left;
   box-sizing: border-box;
   flex-basis: calc(33.33% - 20px);
@@ -46,6 +75,17 @@ body {
 
 .li-slice:last-child {
   margin-right: 0;
+}
+ */
+
+
+@media (max-width: 768px) {
+  .li-slice {
+    display: none;
+  }
+  .li-slice:first-child {
+    display: block;
+  }
 }
 
 /* 베스트 프로덕트 */
@@ -89,6 +129,7 @@ a {
 ul {
   list-style: none;
   /* padding-left: 0px; */
+
 }
 
 /* 인스타 css */
@@ -158,7 +199,7 @@ body {
 
 .product-image {
   max-width: 100%;
-  height: auto;
+  height: 300px;
 }
 
 .product-title {

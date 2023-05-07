@@ -11,13 +11,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-#ydx23zpcha&0i$5im*$6r2#t@52!^f=#pa0uoi993oa6#9nm2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['port-0-kdt-semiproject1-687p2alhd43vo7.sel4.cloudtype.app']
-
+ALLOWED_HOSTS = ['port-0-kdt-semiproject1-687p2alhd43vo7.sel4.cloudtype.app'] 
 
 # Application definition
 
@@ -31,6 +29,7 @@ INSTALLED_APPS = [
     'imagekit',
     'django_cleanup.apps.CleanupConfig',
     'django.contrib.humanize',
+    'debug_toolbar',
     # 기본
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,6 +40,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    # 디버그 툴바
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -145,3 +146,5 @@ load_dotenv()
 환경 변수에서 key가 SECRET_KEY인 value 불러오기
 """
 SECRET_KEY = os.getenv('SECRET_KEY')
+
+

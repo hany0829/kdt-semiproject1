@@ -1,0 +1,100 @@
+[
+{
+    "model": "reviews.comment",
+    "pk": 1,
+    "fields": {
+        "user": 3,
+        "review": 3,
+        "content": "이건 광고입니다이건 광고입니다이건 광고입니다이건 광고입니다이건 광고입니다이건 광고입니다이건 광고입니다",
+        "created": "2023-05-07T10:06:58.547Z",
+        "like_users": [
+            2,
+            5
+        ]
+    }
+},
+{
+    "model": "reviews.comment",
+    "pk": 2,
+    "fields": {
+        "user": 3,
+        "review": 2,
+        "content": "영통동 로켓펀치 너무 무섭고 ~",
+        "created": "2023-05-07T10:07:55.564Z",
+        "like_users": [
+            2,
+            5
+        ]
+    }
+},
+{
+    "model": "reviews.comment",
+    "pk": 3,
+    "fields": {
+        "user": 2,
+        "review": 8,
+        "content": "엥 별로 안 비싼데...",
+        "created": "2023-05-07T10:13:20.333Z",
+        "like_users": []
+    }
+},
+{
+    "model": "reviews.comment",
+    "pk": 4,
+    "fields": {
+        "user": 2,
+        "review": 10,
+        "content": "너무 이뻐요ㅠㅠ",
+        "created": "2023-05-07T10:13:42.320Z",
+        "like_users": [
+            2
+        ]
+    }
+},
+{
+    "model": "reviews.comment",
+    "pk": 5,
+    "fields": {
+        "user": 2,
+        "review": 6,
+        "content": "브라보~",
+        "created": "2023-05-07T10:14:45.335Z",
+        "like_users": []
+    }
+},
+{
+    "model": "reviews.comment",
+    "pk": 6,
+    "fields": {
+        "user": 2,
+        "review": 4,
+        "content": "돈 낭비?",
+        "created": "2023-05-07T10:15:28.665Z",
+        "like_users": []
+    }
+},
+{
+    "model": "reviews.comment",
+    "pk": 7,
+    "fields": {
+        "user": 2,
+        "review": 7,
+        "content": "인스타 감성이 많이 부족하네요ㄷㄷ",
+        "created": "2023-05-07T10:15:54.382Z",
+        "like_users": []
+    }
+},
+{
+    "model": "reviews.comment",
+    "pk": 8,
+    "fields": {
+        "user": 2,
+        "review": 5,
+        "content": "스피커아닌가..?",
+        "created": "2023-05-07T10:16:13.440Z",
+        "like_users": [
+            2
+        ]
+    }
+}
+]

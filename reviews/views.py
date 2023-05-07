@@ -90,24 +90,6 @@ def like_review(request, product_pk, review_pk):
         review.like_users.add(request.user)
     return redirect('products:product_detail', product_pk=product_pk)
 
-# from django.http import JsonResponse
-
-# def like_review(request, product_pk, review_pk):
-#     review = Review.objects.get(pk=review_pk)
-#     if review.like_users.filter(pk=request.user.pk).exists():
-#         review.like_users.remove(request.user)
-#         liked = False
-#     else:
-#         review.like_users.add(request.user)
-#         liked = True
-    
-#     # JSON 응답 반환
-#     context = {
-#         'liked': liked,
-#         'like_count': review.like_users.count(),
-#     }
-#     return JsonResponse(context)
-
 
 
 @login_required

@@ -22,6 +22,3 @@ class Comment(models.Model):
     content = models.CharField(max_length=200, verbose_name='댓글 내용')
     created = models.DateTimeField(auto_now_add=True)
 
-    # # 자동으로 정렬된 상태로 댓글이 반환되게한다.
-    # class Meta:
-    #     ordering = [-'-created']
