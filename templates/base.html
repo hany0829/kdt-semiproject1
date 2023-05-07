@@ -83,7 +83,7 @@
                 <img src="https://www.remod.co.kr/onimg/ico_user@3x.png" alt="myshop">
               </a>
               {% if request.user.is_authenticated %}
-                <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                <ul style="background-color: rgba(54, 57, 63, 0.5);" class="dropdown-menu" aria-labelledby="profileDropdown">
                   <li>
                     <a class="dropdown-item" href="{% url 'accounts:logout' %}">LOGOUT</a>
                   </li>
@@ -92,7 +92,7 @@
                   </li>
                 </ul>
               {% else %}
-                <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                <ul style="background-color: rgba(54, 57, 63, 0.5);" class="dropdown-menu" aria-labelledby="profileDropdown">
                   <li>
                     <a class="dropdown-item" href="{% url 'accounts:login' %}">LOGIN</a>
                   </li>
@@ -116,7 +116,7 @@
         </div>
 
         <!-- 네비게이션 바 -->
-        <div class="header-nav d-none d-lg-flex mt-4">
+        <div class="header-nav d-none d-sm-flex mt-4">
           <div class="nav-link">
             <a href="{% url 'products:category_products' 'Sofa' %}">Sofa</a>
             {% comment %} <div class="nav-dropdown">
