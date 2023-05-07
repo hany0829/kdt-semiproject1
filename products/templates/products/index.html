@@ -16,7 +16,6 @@
   <!-- CSS -->
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
   <link rel="stylesheet" href="{% static 'css/index.css' %}">
-  <link rel="stylesheet" href="{% static 'css/base.css' %}">
 
   <!-- 폰트어썸 불러오기 -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
@@ -46,7 +45,7 @@
       </div>
     </div>
     <div class="main-inner">
-      <div class="banner-area row">
+      <div class="banner-area d-flex row">
         <ul>
           <li class='li-slice'>
             <div class="cont-box1">
@@ -89,46 +88,35 @@
           </li>
         </ul>
       </div>
-      {% if messages %}
-        {% for message in messages %}
-          {{ message.tags }}
-          // SUCCESS
-          {{ message.message }}
-          // 성공적으로 회원가입 완료
-        {% endfor %}
-      {% endif %}
-      <!--BEST PRODUCT -->
-      <div class="bestproduct-area">
-        <div class="best">
-          <h4 class="bestproduct-font" style="height: 50%">
-            <strong>BEST PRODUCT</strong>
-          </h4>
-        </div>
-        <div class="product">
-          <ul class="prd-list">
+    </div>
+    {% if messages %}
+      {% for message in messages %}
+        {{ message.tags }}
+        // SUCCESS
+        {{ message.message }}
+        // 성공적으로 회원가입 완료
+      {% endfor %}
+    {% endif %}
+    <!--BEST PRODUCT -->
+    <div class="bestproduct-area">
+      <div class="best">
+        <h4 class="bestproduct-font" style="height: 50%">
+          <strong>BEST PRODUCT</strong>
+        </h4>
+      </div>
+      <div class="product">
 
-            {% for product in products %}
-              <li class="li-slice">
-                <div class="prd-item">
-                  <a href="{% url 'products:product_detail' product.pk %}">
-                    <img src="{{ product.image.url }}" alt="karimoku" class="product-imgsize"/>
-                    <br/>
-                    <strong class="brandname">{{product.brand}}</strong>
-                    <br/>
-
-                    <div class="product-name" style="font-size:14px; max-width:150px; text-overflow: ellipsis;">
-                      <strong>{{ product.name }}</strong>
-                    </div>
-                    {% comment %} <strong style="font-size:14px ">{{ product.name }}</strong> {% endcomment %}
-                    <br/>
-                    <strong class="price">{{ product.price|intcomma }}원</strong>
-                    <br/>
-                    <img src="https://img.echosting.cafe24.com/design/skin/admin/ko_KR/ico_product_stock.gif" alt="재고보유"/>
-                  </a>
-                </div>
-              </li>
-            {% endfor %}
-          </ul>
+        <div class="product-list">
+          {% for product in products %}
+            <div class="product-item">
+              <a href="{% url 'products:product_detail' product.pk %}">
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+                <h3 class="product-title">{{ product.name }}</h3>
+                <p class="product-brand">{{ product.brand }}</p>
+                <p class="product-price">{{ product.price|intcomma }}원</p>
+              </a>
+            </div>
+          {% endfor %}
         </div>
       </div>
 
@@ -147,52 +135,51 @@
           <ul class="insta-align justify-content-between row">
             <!-- 1번 -->
             <li class="col-2 p-0">
-              <a href="https://www.instagram.com/p/CrNPlGfJxOK/"><img class="insta-img img-fluid" src="https://scontent.cdninstagram.com/v/t51.29350-15/342044081_604273428402352_3846148785001364702_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=j1g_iW2vVZYAX8I9MLJ&_nc_ht=scontent.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AfA5M8wI_DMBviq2i9mD6x6GWHY3zQa5MLVmEwNLCewSlw&oe=6454015C" alt=""/></a>
+              <a href="https://www.instagram.com/p/CrNPlGfJxOK/"><img class="insta-img img-fluid" src="{% static 'img/insta_img/01-1.jpeg' %}" alt=""/></a>
             </li>
             <!-- 2번 -->
             <li class="col-2 p-0">
               <a href="https://www.instagram.com/p/Cptqfi7Jz6V/">
-                <img class="insta-img img-fluid" src="https://scontent.cdninstagram.com/v/t51.29350-15/334362176_981453892820505_7532954700072780858_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=Q8ODutdDqUwAX-gcgJg&_nc_ht=scontent.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AfDAjCerKq_i6gmGzmIIpycGeZsRfOUsB5TwYrM27gxAXA&oe=645451AA" alt=""/></a>
+                <img class="insta-img img-fluid" src="{% static 'img/insta_img/02.jpeg' %}" alt=""/></a>
             </li>
             <!-- 3번 -->
             <li class="col-2 p-0">
               <a href="https://www.instagram.com/p/Co8rTz8JPd3/">
-                <img class="insta-img img-fluid" src="https://scontent.cdninstagram.com/v/t51.29350-15/332049464_552910356815226_4740239732713687468_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=x7FsqOkuJe4AX_HDmAW&_nc_ht=scontent.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AfDA7tyfeaLxNFoLRowMOCELVZwS8TLCor3nH7E3AM6XaQ&oe=64555F48" alt=""/></a>
+                <img class="insta-img img-fluid" src="{% static 'img/insta_img/03.jpeg' %}" alt=""/></a>
             </li>
             <!-- 4번 -->
             <li class="col-2 p-0">
-              <a href="https://www.instagram.com/p/CotiBqDJkFJ/"><img class="insta-img img-fluid" src="https://scontent.cdninstagram.com/v/t51.29350-15/331116543_6227744790590395_264204431958353330_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=zHXu45ZnMBAAX-Ja7sm&_nc_ht=scontent.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AfC6FzOS-efYRZDoG1RmAMPtHeoJxIiFyMXMdDY4XWfHzw&oe=6454CE8F" alt=""/></a>
+              <a href="https://www.instagram.com/p/CotiBqDJkFJ/"><img class="insta-img img-fluid" src="{% static 'img/insta_img/04.jpeg' %}" alt=""/></a>
             </li>
             <!-- 5번 -->
             <li class="col-2 p-0">
               <a href="https://www.instagram.com/p/Cn02K_SJNT5/">
-                <img class="insta-img img-fluid" src="https://scontent.cdninstagram.com/v/t51.29350-15/326874301_733140318409036_76752805852434511_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=PTa6bD5KzXkAX_SAtOt&_nc_ht=scontent.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AfC2oOP3hK6QbGD3u7-olHkS_OtYhnCpeRvGX8pJ2MgPwA&oe=6453E5F1" alt=""/></a>
+                <img class="insta-img img-fluid" src="{% static 'img/insta_img/05.jpeg' %}" alt=""/></a>
             </li>
             <!-- 6번 -->
             <li class="col-2 p-0">
-              <a href="https://www.instagram.com/p/CneBQHippHu/"><img class="insta-img img-fluid" src="https://scontent.cdninstagram.com/v/t51.29350-15/325643696_853193342463685_424341301192815726_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=NjLxRk8hpFAAX_T8N-Q&_nc_ht=scontent.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AfCzF3_LiAGHqpNi77G1u5p3RRgkPIOi3YU9VT6FNRzhdQ&oe=6454455C" alt=""/></a>
+              <a href="https://www.instagram.com/p/CneBQHippHu/"><img class="insta-img img-fluid" src="{% static 'img/insta_img/06.jpeg' %}" alt=""/></a>
             </li>
             <!-- 7번 -->
             <li class="col-2 p-0">
-              <a href="https://www.instagram.com/p/CnVrElxJ7p0/"><img class="insta-img img-fluid" src="https://scontent.cdninstagram.com/v/t51.29350-15/324843856_572258514915373_2094314821813207586_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=6YWZ0mQuJeIAX-cOn1L&_nc_ht=scontent.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AfBOMUQus-LsRwejjCCCzidRezrSRX4TaArAl49HaGOsww&oe=64553F8A" alt=""/></a>
+              <a href="https://www.instagram.com/p/CnVrElxJ7p0/"><img class="insta-img img-fluid" src="{% static 'img/insta_img/07.jpeg' %}" alt=""/></a>
             </li>
             <!-- 8번 -->
             <li class="col-2 p-0">
-              <a href="https://www.instagram.com/p/CnRGDa4Jgsp/"><img class="insta-img img-fluid" src="https://scontent.cdninstagram.com/v/t51.29350-15/324939150_164447649654918_5009359706998112433_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=XNpRUD70eNEAX9YIGTD&_nc_ht=scontent.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AfDUcQz7k0gdeoLVCBYb39B8HORGDtZIzx2B74Ft6OXR3A&oe=6454EF70" alt=""/></a>
+              <a href="https://www.instagram.com/p/CnRGDa4Jgsp/"><img class="insta-img img-fluid" src="{% static 'img/insta_img/08.jpeg' %}" alt=""/></a>
             </li>
             <!-- 9번 -->
             <li class="col-2 p-0">
-              <a href="https://www.instagram.com/p/CnL4SD1p5xW/"><img class="insta-img img-fluid" src="https://scontent.cdninstagram.com/v/t51.29350-15/324074962_135765372672670_6946192567117193598_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=KulyigNrDRsAX9CXvVh&_nc_ht=scontent.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AfD2i8e--bYfkdmC5mqvbCSNSzmaBzdJYyuosF71irTDWA&oe=64553CF5" alt=""/></a>
+              <a href="https://www.instagram.com/p/CnL4SD1p5xW/"><img class="insta-img img-fluid" src="{% static 'img/insta_img/09.jpeg' %}" alt=""/></a>
             </li>
             <!-- 10번 -->
             <li class="col-2 p-0">
               <a href="https://www.instagram.com/p/Cm_CN2Lp5qN/">
-                <img class="insta-img img-fluid" src="https://scontent.cdninstagram.com/v/t51.29350-15/323703903_917519376326144_1542367185579248132_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=rtf1WkfQLIwAX8GwX95&_nc_ht=scontent.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AfDv10sc_8KSveXaNsisOJrxmDTSfj00pfphWqJE_hCHjg&oe=6453FC8A" alt=""/></a>
+                <img class="insta-img img-fluid" src="{% static 'img/insta_img/10.jpeg' %}" alt=""/></a>
             </li>
           </ul>
         </div>
       </div>
     </div>
   </div>
-
 {% endblock content %}

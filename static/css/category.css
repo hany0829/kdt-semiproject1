@@ -1,9 +1,9 @@
 /* 카테고리  */
-@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
-@import url('https://fonts.googleapis.com/css2?family=Mynerve&family=Noto+Sans+KR:wght@900&display=swap');
+@import url("https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css");
+@import url("https://fonts.googleapis.com/css2?family=Mynerve&family=Noto+Sans+KR:wght@900&display=swap");
 
 body {
-  font-family: 'nanumsquare';
+  font-family: "nanumsquare";
 }
 
 .banner_img {
@@ -44,8 +44,8 @@ body {
 }
 
 .bestproduct-font {
-  font-family: 'Mynerve', cursive;
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: "Mynerve", cursive;
+  font-family: "Noto Sans KR", sans-serif;
 }
 
 hr {
@@ -73,10 +73,6 @@ a {
   padding-top: 6px;
   margin-bottom: 5px;
   font-size: 17px;
-}
-
-.product {
-  display: grid;
 }
 
 .best {
@@ -200,4 +196,90 @@ li {
 #page {
   font-size: 1.2rem;
   padding: 0.5rem;
+}
+
+/* chatgpt꺼 */
+
+/* .product-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -10px;
+}
+
+.product-item {
+  flex-basis: calc(25% - 20px);
+  padding: 10px;
+  margin: 10px;
+  box-sizing: border-box;
+  text-align: center;
+  background-color: #f8f8f8;
+  border-radius: 5px;
+}
+
+.product-item a {
+  text-decoration: none;
+  color: #333;
+}
+
+.product-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.product-title {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.product-brand {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 5px;
+}
+
+.product-price {
+  font-size: 16px;
+  font-weight: bold;
+} */
+
+/*  */
+
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+}
+
+.product-item {
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: center;
+  background-color: #f8f8f8;
+  border-radius: 5px;
+}
+
+.product-item a {
+  text-decoration: none;
+  color: #333;
+}
+
+.product-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.product-title {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.product-brand {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 5px;
+}
+
+.product-price {
+  font-size: 16px;
+  font-weight: bold;
 }
